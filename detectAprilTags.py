@@ -42,14 +42,9 @@ def captureframe(seconds):
     # display the image
     cv.imshow("AprilTag Detection", frame)
 
-    # exit using the q key
-    if cv.waitKey(1) & 0xFF == ord('q'):
-        return 1
-
-    #delay time before ending the function call allows optimization
-
+    #delay time before ending the function call allows for optimization later on
     time.sleep(seconds)
-    # Cleanup
+    # destroy all instances
     cam.release()
     cv.destroyAllWindows()
 

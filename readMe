@@ -2,3 +2,18 @@
 #https://www.geeksforgeeks.org/python/python-opencv-capture-video-from-camera/#
 #https://github.com/pupil-labs/apriltags
 https://docs.opencv.org/4.x/db/deb/tutorial_display_image.html
+
+
+
+
+
+
+
+
+Project Notes:
+######Capture Frame Function#####
+### 9/25/25 4:50 PM; Ben J - this function works by using the open computer vision library. It currently opens the webcam. Takes a frame and converts it to grayscale.
+###################  it then uses the detector class to detect the different apriltags in the frame, and print their tag and location to the command line
+###################  next steps are going to be figuring out the calibration of the camera. So we should get a board or representation of the physical board ASAP.
+###################  figuring out what data is relevant to the positioning of actual objects in the grid. I will probably move on to creating a real representation of
+###################  the grid, and researching the division.
