@@ -1,0 +1,34 @@
+class Grid(object):
+    def __init__(self, width, height, grid):
+        self.width = width
+        self.height = height
+        self.grid = grid
+
+## Getters and Setters ##
+
+    def getwidth(self):
+        return self.width
+
+    def getheight(self):
+        return self.height
+
+    def getgrid(self):
+        return self.grid
+
+    def setwidth(self, width):
+        self.width = width
+
+    def setheight(self, height):
+        self.height = height
+
+    def setgrid(self, grid):
+        self.grid = grid
+
+
+
+#helper functions
+    def updategrid(self):
+        pass
+
+
+
