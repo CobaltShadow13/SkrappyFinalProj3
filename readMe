@@ -11,9 +11,19 @@ https://docs.opencv.org/4.x/db/deb/tutorial_display_image.html
 
 
 Project Notes:
-######Capture Frame Function#####
-### 9/25/25 4:50 PM; Ben J - this function works by using the open computer vision library. It currently opens the webcam. Takes a frame and converts it to grayscale.
-###################  it then uses the detector class to detect the different apriltags in the frame, and print their tag and location to the command line
-###################  next steps are going to be figuring out the calibration of the camera. So we should get a board or representation of the physical board ASAP.
-###################  figuring out what data is relevant to the positioning of actual objects in the grid. I will probably move on to creating a real representation of
-###################  the grid, and researching the division.
+
+Ben J - 9/25/25: started the project determined the library we can use (pupil-apriltags is the best python wrapper for apriltags which is originally written for C on linux.
+My other idea was wishful thinking and we would need a $400 camera, don’t even listen to me in the first place. Documentation is on the read me page if you click the link.
+I’m gonna finish up some more of the starting difficult stuff for us and then give everyone the crash course and plan forward for this thing. Teach y’all how to use github fr.
+My goal is to finish the setup and some more of the parts I think will be complicated and then have some specific tasks for people who want to do them.
+
+Here’s what I did:
+Created the following classes with getters and setters:
+gridClass
+detectorClass (not really a class just contains the detector instance).
+terrainClass (will contain the information for the terrain)
+Created Main File
+Created detectAprilTags helper function
+This is where the meat of the Computer Vision is run, currently creating a camera instance, that captures a frame out of the webcam, turns the frame into grayscale and detects which tags are actually within the frame. Right now the for loop just prints them to the console but eventually this will return the important data that allows it to interact with the actual grid.
+Created an error check helper file, need to move the frame capture error check.
+Updated the read me
