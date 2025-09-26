@@ -1,4 +1,4 @@
-from detector import board_detector
+from Objects.detectors import board_detector
 import cv2 as cv
 import time
 

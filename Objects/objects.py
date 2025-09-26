@@ -1,5 +1,4 @@
-import terrainClass
-import familyClass
+from Classes import familyClass, terrainClass
 
 playerTag = familyClass.player.getTagID()
 playerTotalSize = familyClass.player.getTotalSize()
@@ -21,7 +20,7 @@ boardShape = familyClass.board.getshape()
 board0 = terrainClass.BoardPiece('board', boardTag, boardShape, boardTotalSize, boardTagSize, 0)
 board1 = terrainClass.BoardPiece('board', boardTag, boardShape, boardTotalSize, boardTagSize, 1)
 board2 = terrainClass.BoardPiece('board', boardTag, boardShape, boardTotalSize, boardTagSize, 2)
-board3 = terrainClass.BoardPiece('board', boardTag, boardShape, boardTotalSize, boardTagSize,3)
+board3 = terrainClass.BoardPiece('board', boardTag, boardShape, boardTotalSize, boardTagSize, 3)
 
 
 ##houses
@@ -32,4 +31,4 @@ house0 = terrainClass.BoardPiece('house', houseTag, houseShape, houseTotalSize, 
 player0 = terrainClass.BoardPiece('board', playerTag, playerShape, playerTotalSize, familyClass.player.tagSize, 0)
 player1 = terrainClass.BoardPiece('board', playerTag, playerShape, playerTotalSize, playerTagSize, 1)
 player2 = terrainClass.BoardPiece('board', playerTag, playerShape, playerTotalSize, playerTagSize, 2)
-player3 = terrainClass.BoardPiece('board', playerTag, playerShape, playerTotalSize, playerTagSize,3)
+player3 = terrainClass.BoardPiece('board', playerTag, playerShape, playerTotalSize, playerTagSize, 3)

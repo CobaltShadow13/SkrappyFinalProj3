@@ -44,9 +44,9 @@ class Family(object):
         self.pieces = pieces
 
 ###########################Hard Coded Objects For Now#########################
-from shapes import playerShape
-from shapes import boardShape
-from shapes import houseShape
+from Objects.shapes import playerShape
+from Objects.shapes import boardShape
+from Objects.shapes import houseShape
 
 house = Family("house", 100, 77.8, "tag25h9", houseShape, [0] )
 board = Family("board", 100, 75, "tag16h5", boardShape, [0,1,2,3])
