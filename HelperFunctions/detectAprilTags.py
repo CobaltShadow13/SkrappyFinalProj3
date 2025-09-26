@@ -20,17 +20,17 @@ def captureframe(seconds, mainCamera):
 
     frame_width = int(cam.get(cv.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cam.get(cv.CAP_PROP_FRAME_HEIGHT))
-    ret, frame = cam.read()
+    ret, rawFrame = cam.read()
 
     ##good practice error check, maybe my camera is off
     if not ret:
         print("Failed process, Exiting Now")
         return 0
-
-    undistorted = mainCamera.undistortImage(frame)
+##Fix undistort raw image sometime soon
+    frame = rawFrame
 
     # make the image grayscale for library processing
-    gray = cv.cvtColor(undistorted, cv.COLOR_BGR2GRAY)
+    gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
     # detect tags in the grayscale image
     detections = board_detector.detect(gray, True, (mainCamera.getfy(), mainCamera.getfy(), mainCamera.getcx(), mainCamera.getcy()))
@@ -41,7 +41,7 @@ def captureframe(seconds, mainCamera):
 
 
     # display the image
-    cv.imshow("AprilTag Detection", frame)
+    cv.imshow("AprilTag Detection", gray)
 
     # exit using the q key
     if cv.waitKey(1) & 0xFF == ord('q'):

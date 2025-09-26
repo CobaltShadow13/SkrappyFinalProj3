@@ -4,13 +4,13 @@ import glob
 
 
 class Camera(object):
-    def __init__(self, camera=None, fx=0, fy=0, cx=0, cy=0, dist=None):
+    def __init__(self, camera, fx, fy, cx, cy, dist):
         self.camera = camera
         self.fx = fx
         self.fy = fy
         self.cx = cx
         self.cy = cy
-        self.dist = dist if dist is not None else np.zeros((5, 1))
+        self.dist = dist
 
     ### Getters and Setters ###
     def getCamera(self):

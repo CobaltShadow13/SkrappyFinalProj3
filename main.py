@@ -5,7 +5,6 @@ import cv2 as cv
 
 while True:
     #runs the capture frame every 30 seconds
-    mainCamera = Camera()
-    mainCamera.setCamera(cv.VideoCapture(0))
+    mainCamera = Camera(cv.VideoCapture(0), 0,0,0,0, None)
 
     captureframe(1, mainCamera)
