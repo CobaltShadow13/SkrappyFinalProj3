@@ -2,10 +2,20 @@
 #https://www.geeksforgeeks.org/python/python-opencv-capture-video-from-camera/#
 #https://github.com/pupil-labs/apriltags
 https://docs.opencv.org/4.x/db/deb/tutorial_display_image.html
+    https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html
 https://chaitanyantr.github.io/apriltag.html
+https://blog.fixermark.com/posts/2022/april-tags-python-recognizer/
+https://github.com/suriono/apriltag
+https://pupil-apriltags.readthedocs.io/en/stable/api.html
+https://stackoverflow.com/questions/35988/c-like-structures-in-python
 
+#Note: The tag size should not be measured from the outside of the tag. The tag size is defined as the distance between the
+detection corners, or alternately, the length of the edge between the white border and the black border.
+The following illustration marks the detection corners with red Xs and the tag size with a red arrow for a
+tag from the 48h12Custom tag family.
 
-
+Ben things to add generally not sure where yet:
+- UI is able to add and generate tags from a database
 
 
 

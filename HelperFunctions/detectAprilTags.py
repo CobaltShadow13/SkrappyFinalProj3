@@ -1,10 +1,11 @@
+from pupil_apriltags import Detection
 from Objects.detectors import board_detector
 import cv2 as cv
 import time
-
+from cameraClass import Camera
 
 #### Ben notes of things to add ####
-##   -
+##   - Add a crosshair and tag display to the photo display that is represented. https://blog.fixermark.com/posts/2022/april-tags-python-recognizer/
 ##   -
 ##   -
 
@@ -16,13 +17,19 @@ import time
 ###################  the grid, and researching the division.
 
 
+#LOOK AT THIS AND CONFIRM IT WORKS ## ALSO MOVE IT TO MAIN AT SOMEPOINT
+mainCamera = Camera()
+mainCamera.loadCalibration()
+mainCamera.setCamera(cv.VideoCapture(0))
+
+
 def captureframe(seconds):
-    cam = cv.VideoCapture(0)
+    cam = mainCamera.getCamera()
 
     frame_width = int(cam.get(cv.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cam.get(cv.CAP_PROP_FRAME_HEIGHT))
 
-    ret, frame = cam.read()
+    ret, frame = mainCamera.undistortImage(cam.read())
 
     ##good practice error check, maybe my camera is off
     if not ret:
@@ -33,11 +40,12 @@ def captureframe(seconds):
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
     # detect tags in the grayscale image
-    tags = board_detector.detect(gray)
+    detections = board_detector.detect(gray, True, mainCamera.getfy(), mainCamera.getfy(), mainCamera.getcx(), mainCamera.getcy())
 
 #loop that takes all the tags detected in the grayscale frame and will later be used to return frame data to the map
-    for tag in tags:
+    for tag in detections:
         print(f"Detected board tag ID: {tag.tag_id} at {tag.center}")
+
 
     # display the image
     cv.imshow("AprilTag Detection", frame)
