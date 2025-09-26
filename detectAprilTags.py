@@ -1,4 +1,4 @@
-from detectorClass import at_detector
+from detector import board_detector
 import cv2 as cv
 import time
 
@@ -33,11 +33,11 @@ def captureframe(seconds):
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
     # detect tags in the grayscale image
-    tags = at_detector.detect(gray)
+    tags = board_detector.detect(gray)
 
 #loop that takes all the tags detected in the grayscale frame and will later be used to return frame data to the map
     for tag in tags:
-        print(f"Detected tag ID: {tag.tag_id} at {tag.center}")
+        print(f"Detected board tag ID: {tag.tag_id} at {tag.center}")
 
     # display the image
     cv.imshow("AprilTag Detection", frame)
