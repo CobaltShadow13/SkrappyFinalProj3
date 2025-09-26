@@ -5,8 +5,7 @@ import cv2 as cv
 
 while True:
     #runs the capture frame every 30 seconds
-    mainCamera = Camera
-    mainCamera.loadCalibration(filename="calibration.npz")
+    mainCamera = Camera()
     mainCamera.setCamera(cv.VideoCapture(0))
 
     captureframe(1, mainCamera)

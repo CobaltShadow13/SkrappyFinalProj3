@@ -20,19 +20,20 @@ def captureframe(seconds, mainCamera):
 
     frame_width = int(cam.get(cv.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cam.get(cv.CAP_PROP_FRAME_HEIGHT))
-
-    ret, frame = mainCamera.undistortImage(cam.read())
+    ret, frame = cam.read()
 
     ##good practice error check, maybe my camera is off
     if not ret:
         print("Failed process, Exiting Now")
         return 0
 
+    undistorted = mainCamera.undistortImage(frame)
+
     # make the image grayscale for library processing
-    gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+    gray = cv.cvtColor(undistorted, cv.COLOR_BGR2GRAY)
 
     # detect tags in the grayscale image
-    detections = board_detector.detect(gray, True, mainCamera.getfy(), mainCamera.getfy(), mainCamera.getcx(), mainCamera.getcy())
+    detections = board_detector.detect(gray, True, (mainCamera.getfy(), mainCamera.getfy(), mainCamera.getcx(), mainCamera.getcy()))
 
 #loop that takes all the tags detected in the grayscale frame and will later be used to return frame data to the map
     for tag in detections:

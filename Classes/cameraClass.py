@@ -4,7 +4,7 @@ import glob
 
 
 class Camera(object):
-    def __init__(self, camera, fx=0, fy=0, cx=0, cy=0, dist=None):
+    def __init__(self, camera=None, fx=0, fy=0, cx=0, cy=0, dist=None):
         self.camera = camera
         self.fx = fx
         self.fy = fy
