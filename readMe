@@ -27,3 +27,6 @@ Created detectAprilTags helper function
 This is where the meat of the Computer Vision is run, currently creating a camera instance, that captures a frame out of the webcam, turns the frame into grayscale and detects which tags are actually within the frame. Right now the for loop just prints them to the console but eventually this will return the important data that allows it to interact with the actual grid.
 Created an error check helper file, need to move the frame capture error check.
 Updated the read me
+
+
+Did more tn but also need to rest so i'll do documentaiton later 
