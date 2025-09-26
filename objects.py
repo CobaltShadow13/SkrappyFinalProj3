@@ -6,7 +6,10 @@ playerTotalSize = familyClass.player.getTotalSize()
 playerTagSize = familyClass.player.getTagSize()
 playerShape = familyClass.player.getshape()
 
-house1 = familyClass.house1.getshape()
+houseShape = familyClass.house.getshape()
+houseTag = familyClass.house.getTagFamily()
+houseTotalSize = familyClass.house.getTotalSize()
+houseTagSize = familyClass.house.getTagSize()
 
 boardTag = familyClass.board.getTagFamily()
 boardTotalSize = familyClass.board.getTotalSize()
@@ -22,9 +25,9 @@ board3 = terrainClass.BoardPiece('board', boardTag, boardShape, boardTotalSize, 
 
 
 ##houses
-house0 = terrainClass.BoardPiece('house', familyClass.house.tagID, ( [1,1,1] ,
-                                                                                 [1,1,1] ,
-                                                                                  [1,1,1] ))
+house0 = terrainClass.BoardPiece('house', houseTag, houseShape, houseTotalSize, houseTagSize, 0)
+
+
 ##players
 player0 = terrainClass.BoardPiece('board', playerTag, playerShape, playerTotalSize, familyClass.player.tagSize, 0)
 player1 = terrainClass.BoardPiece('board', playerTag, playerShape, playerTotalSize, playerTagSize, 1)

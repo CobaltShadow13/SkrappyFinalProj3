@@ -46,8 +46,8 @@ class Family(object):
 ###########################Hard Coded Objects For Now#########################
 from shapes import playerShape
 from shapes import boardShape
-from shapes import house1Shape
+from shapes import houseShape
 
-house1 = Family("house", 100, 77.8, "tag25h9", playerShape, [0] )
+house = Family("house", 100, 77.8, "tag25h9", houseShape, [0] )
 board = Family("board", 100, 75, "tag16h5", boardShape, [0,1,2,3])
-player = Family("player", 100, 77.8, "tag36h11", house1Shape, [0,1,2,3])
+player = Family("player", 100, 77.8, "tag36h11", playerShape, [0,1,2,3])
