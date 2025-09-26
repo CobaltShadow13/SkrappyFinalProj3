@@ -1,8 +1,6 @@
-from pupil_apriltags import Detection
 from Objects.detectors import board_detector
 import cv2 as cv
 import time
-from cameraClass import Camera
 
 #### Ben notes of things to add ####
 ##   - Add a crosshair and tag display to the photo display that is represented. https://blog.fixermark.com/posts/2022/april-tags-python-recognizer/
@@ -17,13 +15,7 @@ from cameraClass import Camera
 ###################  the grid, and researching the division.
 
 
-#LOOK AT THIS AND CONFIRM IT WORKS ## ALSO MOVE IT TO MAIN AT SOMEPOINT
-mainCamera = Camera()
-mainCamera.loadCalibration()
-mainCamera.setCamera(cv.VideoCapture(0))
-
-
-def captureframe(seconds):
+def captureframe(seconds, mainCamera):
     cam = mainCamera.getCamera()
 
     frame_width = int(cam.get(cv.CAP_PROP_FRAME_WIDTH))
