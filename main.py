@@ -1,5 +1,5 @@
 from HelperFunctions.detectAprilTags import captureframe
-from cameraClass import Camera
+from Classes.cameraClass import Camera
 import cv2 as cv
 
 
