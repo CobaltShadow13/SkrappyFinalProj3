@@ -1,6 +1,10 @@
+
+
 class Family(object):
-    def __init__(self, name, totalSize, tagSize, tagFamily, tagID, pieces):
+
+    def __init__(self, name, totalSize, tagSize, tagFamily, familyShape, pieces):
         self.name = name
+        self.familyShape = familyShape
         self.totalSize = totalSize
         self.tagSize = tagSize
         self.tagFamily= tagFamily
@@ -36,14 +40,14 @@ class Family(object):
     def setTagFamily(self, tagFamily):
         self.tagID = tagFamily
 
-    def setTagID(self, tagID):
-        self.tagID = tagID
-
     def setPieces(self, pieces):
         self.pieces = pieces
 
-###########################Objects#########################
+###########################Hard Coded Objects For Now#########################
+from shapes import playerShape
+from shapes import boardShape
+from shapes import house1Shape
 
-house = Family("house", 100, 77.8, "tag25h9", [0])
-board = Family("board", 100, 75, "tag16h5", [0,1,2,3])
-player = Family("player", 100, 77.8, "tag36h11", [0,1,2,3])
+house1 = Family("house", 100, 77.8, "tag25h9", playerShape, [0] )
+board = Family("board", 100, 75, "tag16h5", boardShape, [0,1,2,3])
+player = Family("player", 100, 77.8, "tag36h11", house1Shape, [0,1,2,3])
