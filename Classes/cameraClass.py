@@ -10,7 +10,6 @@ class Camera(object):
         self.fy = fy
         self.cx = cx
         self.cy = cy
-        self.camera = camera
         self.dist = dist if dist is not None else np.zeros((5, 1))
 
     ### Getters and Setters ###
@@ -106,7 +105,7 @@ class Camera(object):
         newcameramtx, roi = cv.getOptimalNewCameraMatrix(mtx, self.dist, (w, h), 1, (w, h))
         return cv.undistort(img, mtx, self.dist, None, newcameramtx)
 
-    def loadCalibration(self, filename="calibration.npz"):
+    def loadCalibration(self, filename):
         data = np.load(filename)
         mtx, dist = data["mtx"], data["dist"]
         self.setfx(mtx[0, 0])
