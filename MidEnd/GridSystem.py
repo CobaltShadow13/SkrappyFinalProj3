@@ -31,7 +31,7 @@ def setTileMap(width, height):
     xOffset = width / 2
     yOffset = height / 2
 
-    ## set the unique tileID that will allow us to call the row or col with one number
+    ## set the unique tileID that will allow us to call the row or col with one number as well as the grid system
     for x in range(width):
         column = []
         for y in range(height):
