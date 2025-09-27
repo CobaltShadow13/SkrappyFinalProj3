@@ -1,6 +1,7 @@
 from Objects.detectors import board_detector
 import cv2 as cv
 import time
+from Classes.familyClass import board
 
 #### Ben notes of things to add ####
 ##   - Add a crosshair and tag display to the photo display that is represented. https://blog.fixermark.com/posts/2022/april-tags-python-recognizer/
@@ -26,14 +27,20 @@ def captureframe(seconds, mainCamera):
     if not ret:
         print("Failed process, Exiting Now")
         return 0
-##Fix undistort raw image sometime soon
+    ##Fix undistort raw image sometime soon
     frame = rawFrame
 
     # make the image grayscale for library processing
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
+    h, w = gray.shape[:2]
+    fx = mainCamera.getfx() if mainCamera.getfx() != 0 else w
+    fy = mainCamera.getfy() if mainCamera.getfy() != 0 else w
+    cx = mainCamera.getcx() if mainCamera.getcx() != 0 else w / 2
+    cy = mainCamera.getcy() if mainCamera.getcy() != 0 else h / 2
+
     # detect tags in the grayscale image
-    detections = board_detector.detect(gray, True, (mainCamera.getfy(), mainCamera.getfy(), mainCamera.getcx(), mainCamera.getcy()))
+    detections = board_detector.detect(gray, True, (fx,fy,cx,cy), board.getTagSize())
 
 #loop that takes all the tags detected in the grayscale frame and will later be used to return frame data to the map
     for tag in detections:
