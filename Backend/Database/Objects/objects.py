@@ -1,4 +1,4 @@
-from Backend.Classes import terrainClass, familyClass
+from Backend.Scripts.Classes import familyClass, terrainClass
 
 playerTag = familyClass.player.getTagID()
 playerTotalSize = familyClass.player.getTotalSize()

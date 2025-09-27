@@ -1,7 +1,6 @@
-from Backend.GridSystem import initializeGrid
-from Backend.HelperFunctions.captureFrame import captureframe
-from Backend.Classes.cameraClass import Camera
-from Backend.GridSystem import initializeGrid
+from Backend.Scripts.HelperFunctions.captureFrame import captureframe
+from Backend.Scripts.Classes.cameraClass import Camera
+from Backend.Scripts.Classes.GridClass import initializeGrid
 import cv2 as cv
 
 def __main__():

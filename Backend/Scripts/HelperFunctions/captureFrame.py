@@ -1,10 +1,8 @@
-from tkinter.constants import CENTER
-
-from Backend.HelperFunctions.drawingUtilities import CENTER_COLOR, CORNER_COLOR, plotPoint, plotText
-from Backend.Objects.detectors import board_detector
+from Backend.Scripts.HelperFunctions.drawingUtilities import CENTER_COLOR, CORNER_COLOR, plotPoint, plotText
+from Backend.Database.Objects.detectors import board_detector
 import cv2 as cv
 import time
-from Backend.Classes.familyClass import board
+from Backend.Scripts.Classes.familyClass import board
 
 
 
