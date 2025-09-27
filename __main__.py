@@ -1,5 +1,5 @@
 from Backend.GridSystem import initializeGrid
-from Backend.HelperFunctions.detectAprilTags import captureframe
+from Backend.HelperFunctions.captureFrame import captureframe
 from Backend.Classes.cameraClass import Camera
 from Backend.GridSystem import initializeGrid
 import cv2 as cv

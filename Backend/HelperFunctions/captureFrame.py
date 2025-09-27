@@ -1,7 +1,12 @@
+from tkinter.constants import CENTER
+
+from Backend.HelperFunctions.drawingUtilities import CENTER_COLOR, CORNER_COLOR, plotPoint, plotText
 from Backend.Objects.detectors import board_detector
 import cv2 as cv
 import time
 from Backend.Classes.familyClass import board
+
+
 
 #### Ben notes of things to add ####
 ##   - Add a crosshair and tag display to the photo display that is represented. https://blog.fixermark.com/posts/2022/april-tags-python-recognizer/
@@ -27,12 +32,13 @@ def captureframe(seconds, mainCamera):
     if not ret:
         print("Failed process, Exiting Now")
         return 0
+
     ##Fix undistort raw image sometime soon
     frame = rawFrame
 
     # make the image grayscale for library processing
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-
+    ##error checking for the camera
     h, w = gray.shape[:2]
     fx = mainCamera.getfx() if mainCamera.getfx() != 0 else w
     fy = mainCamera.getfy() if mainCamera.getfy() != 0 else w
@@ -48,7 +54,11 @@ def captureframe(seconds, mainCamera):
         print(tag.pose_t.flatten())
         print(f"Detected board tag ID: {tag.tag_id} at {tag.center}, X: {x} Y: {y} Z: {z}")
 
-
+        ##draw stuff
+        gray = plotPoint(gray, tag.center, CENTER_COLOR)
+        gray = plotText(gray, tag.center, CENTER_COLOR, tag.tag_id)
+        for corner in tag.corners:
+            gray = plotPoint(gray, corner, CORNER_COLOR)
 
     # display the image
     cv.imshow("AprilTag Detection", gray)
