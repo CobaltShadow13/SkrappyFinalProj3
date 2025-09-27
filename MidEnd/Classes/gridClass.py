@@ -1,3 +1,8 @@
+# For Grid
+# You could indeed use numpy for this.
+# One way would be to define a 3d array as np.zeros((x_coor, y_coor, 2))
+# and save each of the coordinates along the last axis.
+
 class Grid(object):
     def __init__(self, width, height, grid):
         self.width = width

@@ -1,5 +1,5 @@
 from pupil_apriltags import Detector
-from Classes import familyClass
+from Backend.Classes import familyClass
 
 player_detector = Detector(
    families = familyClass.player.tagFamily,

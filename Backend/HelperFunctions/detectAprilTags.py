@@ -1,7 +1,7 @@
-from Objects.detectors import board_detector
+from Backend.Objects.detectors import board_detector
 import cv2 as cv
 import time
-from Classes.familyClass import board
+from Backend.Classes.familyClass import board
 
 #### Ben notes of things to add ####
 ##   - Add a crosshair and tag display to the photo display that is represented. https://blog.fixermark.com/posts/2022/april-tags-python-recognizer/
@@ -44,8 +44,10 @@ def captureframe(seconds, mainCamera):
 
 #loop that takes all the tags detected in the grayscale frame and will later be used to return frame data to the map
     for tag in detections:
+        x, y, z = tag.pose_t.flatten()
         print(tag.pose_t.flatten())
-        print(f"Detected board tag ID: {tag.tag_id} at {tag.center}")
+        print(f"Detected board tag ID: {tag.tag_id} at {tag.center}, X: {x} Y: {y} Z: {z}")
+
 
 
     # display the image

@@ -1,5 +1,5 @@
-from HelperFunctions.detectAprilTags import captureframe
-from Classes.cameraClass import Camera
+from Backend.HelperFunctions.detectAprilTags import captureframe
+from Backend.Classes.cameraClass import Camera
 import cv2 as cv
 
 def __main__():
