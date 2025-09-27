@@ -55,12 +55,14 @@ class Camera(object):
                          [0,      0,     1]])
 
     ### Helper Functions ###
+
     def calibrateCamera(self, pattern_size=(24, 24)):
         criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
         # prepare object points
+        square_size = 0.0254
         objp = np.zeros((pattern_size[0] * pattern_size[1], 3), np.float32)
-        objp[:, :2] = np.mgrid[0:pattern_size[0], 0:pattern_size[1]].T.reshape(-1, 2)
+        objp[:, :2] = np.mgrid[0:pattern_size[0], 0:pattern_size[1]].T.reshape(-1, 2) * square_size
 
         objpoints = []  # 3d points
         imgpoints = []  # 2d points

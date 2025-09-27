@@ -29,11 +29,19 @@ class Grid(object):
     def setgrid(self, grid):
         self.grid = grid
 
+    def getTile(self, tileID):
+        return self.grid[tileID // 24, tileID % 24]
+
 
 
 #helper functions
     def updategrid(self):
         pass
+
+
+
+
+
 
 
 
