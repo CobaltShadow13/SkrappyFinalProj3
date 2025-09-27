@@ -113,10 +113,6 @@ class Grid(object):
         self.height = height
 
 
-
 def initializeGrid(width, height):
     grid = Grid(width, height)
     return grid
-
-
-grid = initializeGrid(24,24)
