@@ -44,6 +44,7 @@ def captureframe(seconds, mainCamera):
 
 #loop that takes all the tags detected in the grayscale frame and will later be used to return frame data to the map
     for tag in detections:
+        print(tag.pose_t.flatten())
         print(f"Detected board tag ID: {tag.tag_id} at {tag.center}")
 
 
