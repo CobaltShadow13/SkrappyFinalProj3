@@ -6,7 +6,7 @@ import cv2 as cv
 
 def __main__():
     # Make the grid generalizable later
-    mapGrid = initializeGrid(24, 24)
+    mapGrid = initializeGrid(12, 12)
     while True:
         #runs the capture frame every x seconds
         mainCamera = Camera(cv.VideoCapture(0), 0,0,0,0, None)
