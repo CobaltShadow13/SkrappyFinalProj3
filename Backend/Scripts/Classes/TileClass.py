@@ -67,7 +67,8 @@ class BoundarySet(object):
 
 
 class Tile():
-    def __init__(self, xTileCoord, yTileCoord, tileID, boundarySet):
+    def __init__(self,size , xTileCoord, yTileCoord, tileID, boundarySet):
+        self.size = size #in meters
         self.xTileCoord = xTileCoord
         self.yTileCoord = yTileCoord
         self.tileID = tileID
@@ -75,6 +76,8 @@ class Tile():
         self.boundarySet = boundarySet
 
     ## Getters and Setters ##
+    def getSize(self):
+        return self.size
     def getXCoord(self):
         return self.xTileCoord
 
@@ -107,6 +110,8 @@ class Tile():
             return (self.boundarySet.getYHigh())
         else:
             return None
+    def setSize(self, size):
+        self.size = size
 
     def setXTileCoord(self, xTileCoord):
         self.xTileCoord = xTileCoord
@@ -131,7 +136,13 @@ class Tile():
         elif boundaryPos == 3:
             self.boundarySet.setYHigh(boundary)
         else:
-            self.boundarySet.setXLow(boundary)
-            self.boundarySet.setXHigh(boundary)
-            self.boundarySet.setYLow(boundary)
-            self.boundarySet.setYHigh(boundary)
+            self.boundarySet.setXLow(0)
+            self.boundarySet.setXHigh(0)
+            self.boundarySet.setYLow(0)
+            self.boundarySet.setYHigh(0)
+
+    def autoSetBounds(self):
+        self.setBoundary(0, self.getXCoord()-self.getSize())
+        self.setBoundary(1, self.getXCoord())
+        self.setBoundary(2, self.getYCoord()-self.getSize())
+        self.setBoundary(3, self.getYCoord())
