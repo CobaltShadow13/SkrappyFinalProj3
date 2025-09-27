@@ -1,6 +1,6 @@
-from numpy.ma.core import append
 
-class boundarySet(object):
+##BoundarySet holds the upper and lower bounds on the x and y axis in meters.
+class BoundarySet(object):
     def __init__(self, xLow, xHigh, yLow, yHigh): #In Meters
         self.xLow = xLow
         self.xHigh = xHigh
