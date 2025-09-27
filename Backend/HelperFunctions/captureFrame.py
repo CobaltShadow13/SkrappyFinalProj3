@@ -33,7 +33,7 @@ def captureframe(seconds, mainCamera):
         print("Failed process, Exiting Now")
         return 0
 
-    ##Fix undistort raw image sometime soon
+    ##Fix undistort raw image
     frame = rawFrame
 
     # make the image grayscale for library processing
@@ -59,6 +59,7 @@ def captureframe(seconds, mainCamera):
         gray = plotText(gray, tag.center, CENTER_COLOR, tag.tag_id)
         for corner in tag.corners:
             gray = plotPoint(gray, corner, CORNER_COLOR)
+
 
     # display the image
     cv.imshow("AprilTag Detection", gray)

@@ -50,6 +50,17 @@ class Tile():
         return (self.tileID % height)
     def getHasTag(self):
         return self.hasTag
+    def getBoundary(self, boundaryPos):
+        if boundaryPos == "xLow":
+            return self.boundarySet[0]
+        elif boundaryPos == "xHigh":
+            return self.boundarySet[1]
+        elif boundaryPos == "yLow":
+            return self.boundarySet[2]
+        elif boundaryPos == "yHigh":
+            return self.boundarySet[3]
+        else:
+            return None
 
     def setXTileCoord(self, xTileCoord):
         self.xTileCoord = xTileCoord
@@ -60,6 +71,11 @@ class Tile():
     def setTileID(self, y, width, x):
         tileID = y + width * x
         self.tileID = tileID
+
+
+
+
+
 
 
 
