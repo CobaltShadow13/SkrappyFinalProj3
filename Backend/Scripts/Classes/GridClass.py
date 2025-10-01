@@ -1,5 +1,5 @@
 ##Border set holds the boolean values for turning on and off the border walls in the UI
-from Backend.Scripts.Classes.TileClass import Tile
+from Backend.Scripts.Classes.TileClass import Tile, BoundarySet
 
 
 def setTileMap(tileMap, width, height):
@@ -24,7 +24,8 @@ def createTileMap(width, height):
     for x in range(width):
         column = []
         for y in range(height):
-            column.append(Tile(None, None, None, None))
+            boundarySet = BoundarySet(0,0,0,0)
+            column.append(Tile(None, None, None, None, boundarySet))
         newTileMap.append(column)
     setTileMap(newTileMap, width, height)
     return newTileMap

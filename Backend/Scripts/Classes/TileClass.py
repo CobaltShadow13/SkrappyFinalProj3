@@ -141,6 +141,8 @@ class Tile():
             self.boundarySet.setYLow(0)
             self.boundarySet.setYHigh(0)
 
+
+################How does this work for negative values???
     def autoSetBounds(self):
         self.setBoundary(0, self.getXCoord()-self.getSize())
         self.setBoundary(1, self.getXCoord())
