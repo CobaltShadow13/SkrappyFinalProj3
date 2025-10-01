@@ -1,5 +1,5 @@
-#Icon Display Set Class is a set of booleans determining if there is a center icon
-class IconDisplaySet(object):
+#Icon Bool Set Class
+class IconBoolSet(object):
 #Constructor
     def __init__(self, top_border, bottom_border, left_border, right_border, center_icon):
         self.top_border = top_border
@@ -7,7 +7,6 @@ class IconDisplaySet(object):
         self.left_border = left_border
         self.right_border = right_border
         self.center_icon = center_icon
-
 #Getters
     def get_top_border(self):
         return self.top_border
