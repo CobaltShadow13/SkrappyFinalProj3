@@ -1,4 +1,4 @@
-from backend.scripts.helper_functions.DrawingUtilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
+from backend.scripts.helper_functions.drawing_utilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
 from backend.database.objects.detectors import board_detector
 import cv2 as cv
 import time
