@@ -1,5 +1,8 @@
 #Imports
+import collections
+
 from backend.scripts.helper_functions.tilemap import  create_tile_map
+from backend.scripts.classes.LocalDetectionClass import *
 #Grid Class
 class Grid(object):
 #Constructor
@@ -29,6 +32,32 @@ class Grid(object):
         self.x_meter_coord = x_meter_width
     def set_y_meter_coord(self, y_meter_height):
         self.y_meter_coord = y_meter_height
+
+#Helper Functions
+    def update_grid(self, tags):
+
+        for x in range(int(self.get_width())):
+            for y in range(int(self.get_height())):
+                tile = self.tileMap[y][x]
+                for tag in tags:
+                    in_x_low = False
+                    in_x_high = False
+                    in_y_low = False
+                    in_y_high = False
+
+                    if tags[tag].get_x() < tile.get_boundary_set().get_x_high():
+                        if tags[tag].get_y() < tile.get_boundary_set().get_y_high():
+                            if tags[tag].get_y() >= tile.get_boundary_set().get_y_low():
+                                if tags[tag].get_x() >= tile.get_boundary_set().get_x_low():
+                                    in_x_low = True
+                                    in_x_high = True
+                                    in_y_low = True
+                                    in_y_high = True
+
+                    if in_x_low and in_x_high and in_y_low and in_y_high:
+                        tile.set_has_tag(True)
+                        tags[tag].set_tile(tile)
+
 
 ##initialize_grid helper function
 def initialize_grid(width, height, tile_size):

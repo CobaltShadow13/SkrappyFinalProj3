@@ -3,7 +3,7 @@ from backend.database.objects.detectors import board_detector
 import cv2 as cv
 import time
 from backend.scripts.classes.LocalFamilyClass import board
-
+from backend.scripts.classes.LocalDetectionClass import LocalDetection
 
 
 #### Ben notes of things to add ####
@@ -46,12 +46,16 @@ def capture_frame(seconds, main_camera):
     # detect tags in the grayscale image
     detections = board_detector.detect(gray, True, (fx,fy,cx,cy), board.getTagSize())
 
+    tags = []
+
 #loop that takes all the tags detected in the grayscale frame and will later be used to return frame data to the map
     for tag in detections:
+
+
         x, y, z = tag.pose_t.flatten()
         print(tag.pose_t.flatten())
         print(f"Detected board tag ID: {tag.tag_id} at {tag.center}, X: {x} Y: {y} Z: {z}")
-
+        tags.append(LocalDetection(tag, None, x, y, z))
         ##draw stuff
         gray = plot_point(gray, tag.center, CENTER_COLOR)
         gray = plot_text(gray, tag.center, CENTER_COLOR, tag.tag_id)
@@ -73,5 +77,5 @@ def capture_frame(seconds, main_camera):
     cam.release()
     cv.destroyAllWindows()
 
-    return 0
+    return tags
 

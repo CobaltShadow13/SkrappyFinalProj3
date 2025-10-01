@@ -16,7 +16,8 @@ def __main__():
     while True:
         #runs the capture frame every x seconds
         mainCamera = LocalCamera(cv.VideoCapture(0), 0, 0, 0, 0, None)
-        capture_frame(1, mainCamera)
+        detection_tags = capture_frame(1, mainCamera)
+        mapGrid.update_grid(detection_tags)
 
 
 __main__()
