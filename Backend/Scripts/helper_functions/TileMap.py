@@ -1,7 +1,14 @@
 ###################################################Tilemap Helper Functions
 from backend.scripts.classes.TileClass import Tile
-from backend.scripts.classes.IconDisplaySet import IconDisplaySet
+from backend.scripts.classes.icons.Borders_Bool_Set_Class import BorderBoolSet
+from backend.scripts.classes.icons.Doors_Bool_Set_Class import DoorBoolSet
+from backend.scripts.classes.icons.Icon_Display_Set_Class import IconDisplaySet
 from backend.scripts.classes.BoundarySetClass import BoundarySet
+from backend.scripts.classes.icons.Icon_Bool_Set_Class import IconBoolSet
+from backend.scripts.classes.icons.Icon_File_Set_Class import IconFileSet
+from backend.scripts.classes.icons import *
+from backend.scripts.classes.icons.Windows_Bool_Set_Class import WindowsBoolSet
+import config
 
 def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
     xTileCoordOffset = width / 2
@@ -10,10 +17,13 @@ def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
     for x in range(width):
         column = []
         for y in range(height):
-            tile_map[y][x].set_x_tile_coord(x - xTileCoordOffset)
-            tile_map[y][x].set_y_tile_coord(y - yTileCoordOffset)
-            tile_map[y][x].set_tile_id(y, width, x)
-            tile_map[y][x].auto_set_bounds()
+            newTile = tile_map[y][x]
+
+            newTile.set_x_tile_coord(x - xTileCoordOffset)
+            newTile.set_y_tile_coord(y - yTileCoordOffset)
+            newTile.set_tile_id(y, width, x)
+            newTile.set_meter_coordinates(newTile.get_x_tile_coord(), newTile.get_y_tile_coord())
+            newTile.auto_set_bounds()
 
             print("Tile ID:", tile_map[y][x].get_tile_id())
             print("X: ", tile_map[y][x].get_x_tile_coord())
@@ -26,8 +36,14 @@ def create_tile_map(width, height, width_m:float, height_m:float, tile_size):
         column = []
         for y in range(height):
             boundary_set = BoundarySet(0,0,0,0)
-            border_set = IconDisplaySet(False, False, False, False, False)
-            new_tile = Tile(tile_size, None, None, None, boundary_set, border_set, width_m, height_m)
+            border_bool_set = BorderBoolSet(False, False, False, False)
+            door_bool_set = DoorBoolSet(False, False, False, False)
+            windows_bool_set = WindowsBoolSet(False, False, False, False)
+            center_icon_bool = False
+            icon_file_set = config.defaultIconFileSet
+            icon_bool_set = IconBoolSet(border_bool_set, door_bool_set, windows_bool_set, center_icon_bool)
+            icon_display_set = IconDisplaySet(icon_bool_set, icon_file_set)
+            new_tile = Tile(tile_size, None, None, None, boundary_set, icon_display_set, width_m, height_m)
             column.append(new_tile)
 
         new_tile_map.append(column)

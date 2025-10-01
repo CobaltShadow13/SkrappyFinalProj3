@@ -1,5 +1,5 @@
 #Imports
-    ## classes
+    ## Classes
 from backend.scripts.classes.LocalCameraClass import LocalCamera
 from backend.scripts.classes.GridClass import initialize_grid
     ##Helper Functions

@@ -1,4 +1,3 @@
-
 #Icon Display Set Class
 class IconDisplaySet(object):
 #Constructor
