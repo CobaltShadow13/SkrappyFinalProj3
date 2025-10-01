@@ -1,7 +1,7 @@
 #BoundarySet holds the upper and lower bounds on the x and y axis in meters.
 class BoundarySet(object):
 #Constructor
-    def __init__(self, x_low, x_high, y_low, y_high):  # In Meters
+    def __init__(self, x_low, x_high, y_low:float, y_high:float):  # In Meters
         self.x_low = x_low
         self.x_high = x_high
         self.y_low = y_low

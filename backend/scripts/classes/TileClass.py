@@ -58,15 +58,16 @@ class Tile:
         self.y_meter_coord = self.get_size() * y_tile_coord
     def auto_set_bounds(self): ##auto sets bounds for itself. MAKE SURE IT HAS A SIZE AND X AND Y COORDINATES ALREADY
         if self.get_x_meter_coord() >= 0: ###checking for positive vs negative to correctly set the high bound to the right/top and low bound to the left/bottom
-            self.get_boundary_set().set_x_low(self.get_x_meter_coord() - self.get_size())
+            self.get_boundary_set().set_x_low((self.get_x_meter_coord() - self.get_size()))
             self.get_boundary_set().set_x_high(self.get_x_meter_coord())
         else:
             self.get_boundary_set().set_x_low(self.get_x_meter_coord())
             self.get_boundary_set().set_x_high(self.get_x_meter_coord() + self.get_size())
-        if self.get_y_meter_coord() < 0: ###checking for positive vs negative to correctly set the high bound to the right/top and low bound to the left/bottom
-            self.get_boundary_set().set_y_low = (self.get_y_meter_coord() - self.get_size())
-            self.get_boundary_set().set_y_high = (self.get_y_meter_coord())
+
+        if self.get_y_meter_coord() >= 0: ###checking for positive vs negative to correctly set the high bound to the right/top and low bound to the left/bottom
+            self.get_boundary_set().set_y_low(self.get_y_meter_coord() - self.get_size())
+            self.get_boundary_set().set_y_high(self.get_y_meter_coord())
         else:
-            self.get_boundary_set().set_y_low = (self.get_y_meter_coord())
-            self.get_boundary_set().set_y_high = (self.get_y_meter_coord() + self.get_size())
+            self.get_boundary_set().set_y_low(self.get_y_meter_coord())
+            self.get_boundary_set().set_y_high(self.get_y_meter_coord() + self.get_size())
 

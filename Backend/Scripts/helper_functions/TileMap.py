@@ -14,9 +14,9 @@ def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
     xTileCoordOffset = width / 2
     yTileCoordOffset = height / 2
 
-    for x in range(width):
+    for x in range(int(width)):
         column = []
-        for y in range(height):
+        for y in range(int(height)):
             newTile = tile_map[y][x]
 
             newTile.set_x_tile_coord(x - xTileCoordOffset)
@@ -32,9 +32,9 @@ def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
 
 def create_tile_map(width, height, width_m:float, height_m:float, tile_size):
     new_tile_map = []
-    for x in range(width):
+    for x in range(int(width)):
         column = []
-        for y in range(height):
+        for y in range(int(height)):
             boundary_set = BoundarySet(0,0,0,0)
             border_bool_set = BorderBoolSet(False, False, False, False)
             door_bool_set = DoorBoolSet(False, False, False, False)
