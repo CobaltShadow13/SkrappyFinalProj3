@@ -2,7 +2,7 @@
 from Backend.Scripts.Classes.TileClass import Tile, BoundarySet
 
 
-def setTileMap(tileMap, width, height):
+def set_tile_map(tile_map, width, height): ##this function sets the grid coordinates to a +- cartesian coordinate system.
     xTileCoordOffset = width / 2
     yTileCoordOffset = height / 2
 
@@ -10,47 +10,49 @@ def setTileMap(tileMap, width, height):
     for x in range(width):
         column = []
         for y in range(height):
-            tileMap[y][x].setXTileCoord(x - xTileCoordOffset)
-            tileMap[y][x].setYTileCoord(y - yTileCoordOffset)
-            tileMap[y][x].setTileID(y, width, x)
-            print("Tile ID:", tileMap[y][x].getTileID())
-            print("X: ", tileMap[y][x].getXCoord())
-            print(" Y: ", tileMap[y][x].getYCoord())
+            tile_map[y][x].set_x_tile_coord(x - xTileCoordOffset)
+            tile_map[y][x].set_y_tile_coord(y - yTileCoordOffset)
+            tile_map[y][x].set_tile_id(y, width, x)
+            print("Tile ID:", tile_map[y][x].get_tile_id())
+            print("X: ", tile_map[y][x].get_x_coord())
+            print(" Y: ", tile_map[y][x].get_y_coord())
 
 
 
-def createTileMap(width, height):
+def create_tile_map(width, height, width_m, height_m):
     newTileMap = []
     for x in range(width):
         column = []
         for y in range(height):
             boundarySet = BoundarySet(0,0,0,0)
-            column.append(Tile(None, None, None, None, boundarySet))
+            newTile = Tile(None, None, None, None, boundarySet, width_m, height_m)
+            column.append(newTile)
+            newTileMap[y][x].auto_set_bounds()
         newTileMap.append(column)
-    setTileMap(newTileMap, width, height)
+    set_tile_map(newTileMap, width, height)
     return newTileMap
 
 
 class Grid(object):
-    def __init__(self, width, height):
+    def __init__(self, width, height, x_meter_width, y_meter_height):
         self.width = width
         self.height = height
-        self.tileMap = createTileMap(width, height)
+        self.tileMap = create_tile_map(width, height, x_meter_width, y_meter_height)
 
     ## Getters and Setters
-    def getWidth(self):
+    def get_width(self):
         return self.width
-    def getHeight(self):
+    def get_height(self):
         return self.height
-    def getTileMap(self):
+    def get_tile_map(self):
         return self.tileMap
 
-    def setWidth(self, width):
+    def set_width(self, width):
         self.width = width
     def setHeight(self, height):
         self.height = height
 
 
-def initializeGrid(width, height):
-    grid = Grid(width, height)
+def initialize_grid(width, height, tile_size):
+    grid = Grid(width, height, tile_size, tile_size) ##this should work
     return grid

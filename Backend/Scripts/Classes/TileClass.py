@@ -1,10 +1,10 @@
 class BorderSet(object):
 
-    def __init__(self, topBorder=False, bottomBorder=False, leftBorder=False, rightBorder=False):
-        self.topBorder = topBorder
-        self.bottomBorder = bottomBorder
-        self.leftBorder = leftBorder
-        self.rightBorder = rightBorder
+    def __init__(self, top_border=False, bottom_border=False, left_border=False, right_border=False):
+        self.topBorder = top_border
+        self.bottomBorder = bottom_border
+        self.leftBorder = left_border
+        self.rightBorder = right_border
 
     def getTopBorder(self):
         return self.topBorder
@@ -33,118 +33,141 @@ class BorderSet(object):
 
 ##BoundarySet holds the upper and lower bounds on the x and y axis in meters.
 class BoundarySet(object):
-    def __init__(self, xLow, xHigh, yLow, yHigh):  # In Meters
-        self.xLow = xLow
-        self.xHigh = xHigh
-        self.yLow = yLow
-        self.yHigh = yHigh
+    def __init__(self, x_low, x_high, y_low, y_high):  # In Meters
+        self.x_low = x_low
+        self.x_high = x_high
+        self.y_low = y_low
+        self.y_high = y_high
 
         ##getters and setters
 
     def getXLow(self):
-        return self.xLow
+        return self.x_low
 
-    def getXHigh(self):
-        return self.xHigh
+    def get_x_high(self):
+        return self.x_high
 
-    def getYLow(self):
-        return self.yLow
+    def get_y_low(self):
+        return self.y_low
 
-    def getYHigh(self):
-        return self.yHigh
+    def get_y_high(self):
+        return self.y_high
 
-    def setXLow(self, xLow):
-        self.xLow = xLow
+    def set_x_low(self, x_low):
+        self.x_low = x_low
 
-    def setXHigh(self, xHigh):
-        self.xHigh = xHigh
+    def set_x_high(self, x_high):
+        self.x_high = x_high
 
-    def setYLow(self, yLow):
-        self.yLow = yLow
+    def set_y_low(self, y_low):
+        self.y_low = y_low
 
-    def setYHigh(self, yHigh):
-        self.yHigh = yHigh
+    def setYHigh(self, y_high):
+        self.y_high = y_high
 
 
 class Tile():
-    def __init__(self,size , xTileCoord, yTileCoord, tileID, boundarySet):
+    def __init__(self, size, x_tile_coord, y_tile_coord, tile_id, boundary_set, x_meter_coord, y_meter_coord): #xtilecoord and ytilecoord are in meters
         self.size = size #in meters
-        self.xTileCoord = xTileCoord
-        self.yTileCoord = yTileCoord
-        self.tileID = tileID
-        self.hasTag = False
-        self.boundarySet = boundarySet
+        self.x_tile_coord = x_tile_coord
+        self.y_tile_coord = y_tile_coord
+        self.tile_id = tile_id
+        self.has_tag = False
+        self.boundarySet = boundary_set
+        self.x_meter_coord = x_meter_coord
+        self.y_meter_coord = y_meter_coord
 
     ## Getters and Setters ##
-    def getSize(self):
+    def get_size(self):
         return self.size
-    def getXCoord(self):
-        return self.xTileCoord
+    def get_x_coord(self):
+        return self.x_tile_coord
 
-    def getYCoord(self):
-        return self.yTileCoord
+    def get_y_coord(self):
+        return self.y_tile_coord
 
-    def getTileID(self):
-        return self.tileID
+    def get_x_meter_coord(self):
+        return self.x_meter_coord
+    def get_y_meter_coord(self):
+        return self.y_meter_coord
 
-    def getRow(self, width):
-        return (self.tileID / width)
+    def get_tile_id(self):
+        return self.tile_id
 
-    def getCol(self, height):
-        return (self.tileID % height)
+    def get_row(self, width):
+        return self.tile_id / width
 
-    def getHasTag(self):
-        return self.hasTag
+    def get_col(self, height):
+        return self.tile_id % height
 
-    def getBoundary(self, boundaryPos):
-        if boundaryPos == 0:
+    def get_has_tag(self):
+        return self.has_tag
+
+    def get_boundary(self, boundary_pos):
+        if boundary_pos == 0:
             return self.boundarySet.getXLow()
 
-        elif boundaryPos == 1:
-            return self.boundarySet.getXHigh()
+        elif boundary_pos == 1:
+            return self.boundarySet.get_x_high()
 
-        elif boundaryPos == 2:
-            return self.boundarySet.getYLow()
+        elif boundary_pos == 2:
+            return self.boundarySet.get_y_low()
 
-        elif boundaryPos == 3:
-            return (self.boundarySet.getYHigh())
+        elif boundary_pos == 3:
+            return self.boundarySet.get_y_high()
         else:
             return None
-    def setSize(self, size):
+    def get_boundary_set(self):
+        return self.boundarySet
+
+
+    def set_size(self, size):
         self.size = size
 
-    def setXTileCoord(self, xTileCoord):
-        self.xTileCoord = xTileCoord
-
-    def setYTileCoord(self, yTileCoord):
-        self.yTileCoord = yTileCoord
-
-    def setHasTag(self, hasTag):
-        self.hasTag = hasTag
-
-    def setTileID(self, y, width, x):
+    def set_x_tile_coord(self, x_tile_coord):
+        self.x_tile_coord = x_tile_coord
+    def set_y_tile_coord(self, y_tile_coord):
+        self.y_tile_coord = y_tile_coord
+    def set_x_meter_coord(self, x_meter_coord):
+        self.x_meter_coord = x_meter_coord
+    def set_y_meter_coord(self, y_meter_coord):
+        self.y_meter_coord = y_meter_coord
+    def set_has_tag(self, has_tag):
+        self.has_tag = has_tag
+    def set_tile_id(self, y, width, x):
         tileID = y + width * x
-        self.tileID = tileID
-
-    def setBoundary(self, boundaryPos, boundary):
-        if boundaryPos == 0:
-            self.boundarySet.setXLow(boundary)
-        elif boundaryPos == 1:
-            self.boundarySet.setXHigh(boundary)
-        elif boundaryPos == 2:
-            self.boundarySet.setYLow(boundary)
-        elif boundaryPos == 3:
+        self.tile_id = tileID
+    def setBoundary(self, boundary_pos, boundary):
+        if boundary_pos == 0:
+            self.boundarySet.set_x_low(boundary)
+        elif boundary_pos == 1:
+            self.boundarySet.set_x_high(boundary)
+        elif boundary_pos == 2:
+            self.boundarySet.set_y_low(boundary)
+        elif boundary_pos == 3:
             self.boundarySet.setYHigh(boundary)
         else:
-            self.boundarySet.setXLow(0)
-            self.boundarySet.setXHigh(0)
-            self.boundarySet.setYLow(0)
+            self.boundarySet.set_x_low(0)
+            self.boundarySet.set_x_high(0)
+            self.boundarySet.set_y_low(0)
             self.boundarySet.setYHigh(0)
 
 
-################How does this work for negative values???
-    def autoSetBounds(self):
-        self.setBoundary(0, self.getXCoord()-self.getSize())
-        self.setBoundary(1, self.getXCoord())
-        self.setBoundary(2, self.getYCoord()-self.getSize())
-        self.setBoundary(3, self.getYCoord())
+    def set_meter_coordinates(self, x_tile_coord, y_tile_coord): #sets the meter coordinates by multiplying the
+        self.x_meter_coord = self.get_size() * x_tile_coord
+        self.y_meter_coord = self.get_size() * y_tile_coord
+
+
+    def auto_set_bounds(self): ##auto sets bounds for itself. MAKE SURE IT HAS A SIZE AND X AND Y COORDINATES ALREADY
+        if self.get_x_meter_coord() / self.get_x_meter_coord() == 1: ###checking for positive vs negative to correctly set the high bound to the right/top and low bound to the left/bottom
+            self.get_boundary(0).setXLow = (self.get_x_meter_coord() - self.get_size())
+            self.get_boundary(1).setXHigh = (self.get_x_meter_coord())
+        else:
+            self.get_boundary(0).setXLow = (self.get_x_meter_coord())
+            self.get_boundary(1).setXHigh = (self.get_x_meter_coord() + self.get_size)
+        if self.get_y_meter_coord() / self.get_y_meter_coord() == 1: ###checking for positive vs negative to correctly set the high bound to the right/top and low bound to the left/bottom
+            self.get_boundary(2).setYLow = (self.get_y_meter_coord() - self.get_size())
+            self.get_boundary(3).setYHigh = (self.get_y_meter_coord())
+        else:
+            self.get_boundary(2).setYLow = (self.get_y_meter_coord())
+            self.get_boundary(3).setYHigh = (self.get_y_meter_coord() + self.get_size)
