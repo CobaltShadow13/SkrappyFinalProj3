@@ -1,5 +1,4 @@
-
-##BoundarySet holds the upper and lower bounds on the x and y axis in meters.
+#BoundarySet holds the upper and lower bounds on the x and y axis in meters.
 class BoundarySet(object):
 #Constructor
     def __init__(self, x_low, x_high, y_low, y_high):  # In Meters
@@ -7,7 +6,6 @@ class BoundarySet(object):
         self.x_high = x_high
         self.y_low = y_low
         self.y_high = y_high
-
 #Getters
     def get_x_low(self):
         return self.x_low

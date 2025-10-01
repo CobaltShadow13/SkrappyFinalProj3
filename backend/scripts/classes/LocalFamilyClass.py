@@ -1,6 +1,5 @@
-
-
-class Family(object):
+#LocalFamily Class
+class LocalFamily(object):
 
     def __init__(self, name, totalSize, tagSize, tagFamily, familyShape, pieces):
         self.name = name
@@ -9,45 +8,36 @@ class Family(object):
         self.tagSize = tagSize
         self.tagFamily= tagFamily
         self.pieces = pieces
-
+#Getters
     def getName(self):
         return self.name
-
     def getTotalSize(self):
         return self.totalSize
-
     def getTagSize(self):
         return self.tagSize
-
     def getTagFamily(self):
         return self.tagFamily
-
     def getTagID(self):
         return self.tagID
-
     def getPieces(self):
         return self.pieces
-
+#Setters
     def setName(self, name):
         self.name = name
-
     def setTotalSize(self, totalSize):
         self.totalSize = totalSize
-
     def setTagSize(self, tagSize):
         self.tagSize = tagSize
-
     def setTagFamily(self, tagFamily):
         self.tagID = tagFamily
-
     def setPieces(self, pieces):
         self.pieces = pieces
 
-###########################Hard Coded Objects For Now#########################
-from Backend.Database.Objects.shapes import playerShape
-from Backend.Database.Objects.shapes import boardShape
-from Backend.Database.Objects.shapes import houseShape
+###########################Hard Coded objects For Now#########################
+from backend.database.objects.shapes import playerShape
+from backend.database.objects.shapes import boardShape
+from backend.database.objects.shapes import houseShape
 
-house = Family("house", 100, 77.8, "tag25h9", houseShape, [0] )
-board = Family("board", 100, 75, "tag16h5", boardShape, [0,1,2,3])
-player = Family("player", 100, 77.8, "tag36h11", playerShape, [0,1,2,3])
+house = LocalFamily("house", 100, 77.8, "tag25h9", houseShape, [0])
+board = LocalFamily("board", 100, 75, "tag16h5", boardShape, [0, 1, 2, 3])
+player = LocalFamily("player", 100, 77.8, "tag36h11", playerShape, [0, 1, 2, 3])

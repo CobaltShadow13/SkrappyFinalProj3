@@ -1,9 +1,12 @@
 ###################################################Tilemap Helper Functions
-def set_tile_map(tile_map, width, height):  ##this function sets the grid coordinates to a +- cartesian coordinate system as well as other functions of the tilemap.
+from backend.scripts.classes.TileClass import Tile
+from backend.scripts.classes.IconDisplaySet import IconDisplaySet
+from backend.scripts.classes.BoundarySetClass import BoundarySet
+
+def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
     xTileCoordOffset = width / 2
     yTileCoordOffset = height / 2
 
-    ## set the unique tileID that will allow us to call the row or col with one number as well as the grid system
     for x in range(width):
         column = []
         for y in range(height):
@@ -13,8 +16,9 @@ def set_tile_map(tile_map, width, height):  ##this function sets the grid coordi
             tile_map[y][x].auto_set_bounds()
 
             print("Tile ID:", tile_map[y][x].get_tile_id())
-            print("X: ", tile_map[y][x].get_x_coord())
-            print(" Y: ", tile_map[y][x].get_y_coord())
+            print("X: ", tile_map[y][x].get_x_tile_coord())
+            print("Y: ", tile_map[y][x].get_y_tile_coord())
+
 
 def create_tile_map(width, height, width_m:float, height_m:float, tile_size):
     new_tile_map = []
@@ -22,7 +26,7 @@ def create_tile_map(width, height, width_m:float, height_m:float, tile_size):
         column = []
         for y in range(height):
             boundary_set = BoundarySet(0,0,0,0)
-            border_set = BorderSet(0,0,0,0)
+            border_set = IconDisplaySet(False, False, False, False, False)
             new_tile = Tile(tile_size, None, None, None, boundary_set, border_set, width_m, height_m)
             column.append(new_tile)
 

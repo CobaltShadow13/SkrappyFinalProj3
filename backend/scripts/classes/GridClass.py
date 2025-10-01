@@ -1,5 +1,5 @@
 #Imports
-from Backend.Scripts.HelperFunctions.TileMap import  create_tile_map
+from backend.scripts.helper_functions.TileMap import  create_tile_map
 #Grid Class
 class Grid(object):
 #Constructor

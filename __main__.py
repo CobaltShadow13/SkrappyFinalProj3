@@ -1,7 +1,11 @@
-from Backend.Scripts.HelperFunctions.captureFrame import capture_frame
-from Backend.Scripts.Classes.cameraClass import Camera
-from Backend.Scripts.Classes.GridClass import initialize_grid
-from Backend.Scripts.HelperFunctions.conversions import inch_to_meters
+#Imports
+    ## classes
+from backend.scripts.classes.LocalCameraClass import LocalCamera
+from backend.scripts.classes.GridClass import initialize_grid
+    ##Helper Functions
+from backend.scripts.helper_functions.CaptureFrame import capture_frame
+from backend.scripts.helper_functions.Conversions import inch_to_meters
+
 import cv2 as cv
 
 def __main__():
@@ -11,7 +15,7 @@ def __main__():
 
     while True:
         #runs the capture frame every x seconds
-        mainCamera = Camera(cv.VideoCapture(0), 0, 0, 0, 0, None)
+        mainCamera = LocalCamera(cv.VideoCapture(0), 0, 0, 0, 0, None)
         capture_frame(1, mainCamera)
 
 

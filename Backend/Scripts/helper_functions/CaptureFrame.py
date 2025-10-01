@@ -1,8 +1,8 @@
-from Backend.Scripts.HelperFunctions.drawingUtilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
-from Backend.Database.Objects.detectors import board_detector
+from backend.scripts.helper_functions.DrawingUtilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
+from backend.database.objects.detectors import board_detector
 import cv2 as cv
 import time
-from Backend.Scripts.Classes.familyClass import board
+from backend.scripts.classes.LocalFamilyClass import board
 
 
 
@@ -13,7 +13,7 @@ from Backend.Scripts.Classes.familyClass import board
 
 ######Capture Frame Function#####
 ### 9/25/25 4:50 PM; Ben J - this function works by using the open computer vision library. It currently opens the webcam. Takes a frame and converts it to grayscale.
-###################  it then uses the detector class to detect the different apriltags in the frame, and print their tag and location to the command line
+###################  it then uses the detector class to detect the different apriltags_tags in the frame, and print their tag and location to the command line
 ###################  next steps are going to be figuring out the calibration of the camera. So we should get a board or representation of the physical board ASAP.
 ###################  figuring out what data is relevant to the positioning of actual objects in the grid. I will probably move on to creating a real representation of
 ###################  the grid, and researching the division.

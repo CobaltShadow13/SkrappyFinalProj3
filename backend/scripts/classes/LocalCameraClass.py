@@ -3,7 +3,7 @@ import numpy as np
 import glob
 
 
-class Camera(object):
+class LocalCamera(object):
     def __init__(self, camera, fx = None, fy = None, cx = None, cy = None, dist = None):
         self.camera = camera
         self.fx = fx
