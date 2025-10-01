@@ -3,9 +3,9 @@ from Backend.Scripts.Classes import familyClass, terrainClass
 playerTag = familyClass.player.getTagID()
 playerTotalSize = familyClass.player.getTotalSize()
 playerTagSize = familyClass.player.getTagSize()
-playerShape = familyClass.player.getshape()
+playerShape = familyClass.player.get_shape()
 
-houseShape = familyClass.house.getshape()
+houseShape = familyClass.house.get_shape()
 houseTag = familyClass.house.getTagFamily()
 houseTotalSize = familyClass.house.getTotalSize()
 houseTagSize = familyClass.house.getTagSize()
@@ -13,7 +13,7 @@ houseTagSize = familyClass.house.getTagSize()
 boardTag = familyClass.board.getTagFamily()
 boardTotalSize = familyClass.board.getTotalSize()
 boardTagSize = familyClass.board.getTagSize()
-boardShape = familyClass.board.getshape()
+boardShape = familyClass.board.get_shape()
 
 
 ##board pieces

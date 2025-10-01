@@ -6,7 +6,7 @@ CORNER_COLOR = (255, 0, 255)
 
 ### Some utility functions to simplify drawing on the camera feed
 # draw a crosshair
-def plotPoint(image, center, color):
+def plot_point(image, center, color):
     center = (int(center[0]), int(center[1]))
     image = cv2.line(image,
                      (center[0] - LINE_LENGTH, center[1]),
@@ -21,7 +21,7 @@ def plotPoint(image, center, color):
     return image
 
 # plot a little text
-def plotText(image, center, color, text):
+def plot_text(image, center, color, text):
     center = (int(center[0]) + 4, int(center[1]) - 4)
     return cv2.putText(image, str(text), center, cv2.FONT_HERSHEY_SIMPLEX,
                        1, color, 3)

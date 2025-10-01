@@ -1,4 +1,4 @@
-from Backend.Scripts.HelperFunctions.drawingUtilities import CENTER_COLOR, CORNER_COLOR, plotPoint, plotText
+from Backend.Scripts.HelperFunctions.drawingUtilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
 from Backend.Database.Objects.detectors import board_detector
 import cv2 as cv
 import time
@@ -19,8 +19,8 @@ from Backend.Scripts.Classes.familyClass import board
 ###################  the grid, and researching the division.
 
 
-def captureframe(seconds, mainCamera):
-    cam = mainCamera.getCamera()
+def capture_frame(seconds, main_camera):
+    cam = main_camera.getCamera()
 
     frame_width = int(cam.get(cv.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cam.get(cv.CAP_PROP_FRAME_HEIGHT))
@@ -38,10 +38,10 @@ def captureframe(seconds, mainCamera):
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     ##error checking for the camera
     h, w = gray.shape[:2]
-    fx = mainCamera.getfx() if mainCamera.getfx() != 0 else w
-    fy = mainCamera.getfy() if mainCamera.getfy() != 0 else w
-    cx = mainCamera.getcx() if mainCamera.getcx() != 0 else w / 2
-    cy = mainCamera.getcy() if mainCamera.getcy() != 0 else h / 2
+    fx = main_camera.getfx() if main_camera.getfx() != 0 else w
+    fy = main_camera.getfy() if main_camera.getfy() != 0 else w
+    cx = main_camera.getcx() if main_camera.getcx() != 0 else w / 2
+    cy = main_camera.getcy() if main_camera.getcy() != 0 else h / 2
 
     # detect tags in the grayscale image
     detections = board_detector.detect(gray, True, (fx,fy,cx,cy), board.getTagSize())
@@ -53,10 +53,10 @@ def captureframe(seconds, mainCamera):
         print(f"Detected board tag ID: {tag.tag_id} at {tag.center}, X: {x} Y: {y} Z: {z}")
 
         ##draw stuff
-        gray = plotPoint(gray, tag.center, CENTER_COLOR)
-        gray = plotText(gray, tag.center, CENTER_COLOR, tag.tag_id)
+        gray = plot_point(gray, tag.center, CENTER_COLOR)
+        gray = plot_text(gray, tag.center, CENTER_COLOR, tag.tag_id)
         for corner in tag.corners:
-            gray = plotPoint(gray, corner, CORNER_COLOR)
+            gray = plot_point(gray, corner, CORNER_COLOR)
 
 
     # display the image

@@ -1,34 +1,34 @@
 class BorderSet(object):
 
     def __init__(self, top_border=False, bottom_border=False, left_border=False, right_border=False):
-        self.topBorder = top_border
-        self.bottomBorder = bottom_border
-        self.leftBorder = left_border
-        self.rightBorder = right_border
+        self.top_border = top_border
+        self.bottom_border = bottom_border
+        self.left_border = left_border
+        self.right_border = right_border
 
-    def getTopBorder(self):
-        return self.topBorder
+    def get_top_border(self):
+        return self.top_border
 
-    def getBottomBorder(self):
-        return self.bottomBorder
+    def get_bottom_border(self):
+        return self.bottom_border
 
-    def getLeftBorder(self):
-        return self.leftBorder
+    def get_left_border(self):
+        return self.left_border
 
-    def getRightBorder(self):
-        return self.rightBorder
+    def get_right_border(self):
+        return self.right_border
 
-    def setTopBorder(self, topBorder):
-        self.topBorder = topBorder
+    def set_top_border(self, top_border):
+        self.top_border = top_border
 
-    def setBottomBorder(self, bottomBorder):
-        self.bottomBorder = bottomBorder
+    def set_bottom_border(self, bottom_border):
+        self.bottom_border = bottom_border
 
-    def setLeftBorder(self, leftBorder):
-        self.leftBorder = leftBorder
+    def set_left_border(self, left_border):
+        self.left_border = left_border
 
-    def setRightBorder(self, rightBorder):
-        self.rightBorder = rightBorder
+    def set_right_border(self, right_border):
+        self.right_border = right_border
 
 
 ##BoundarySet holds the upper and lower bounds on the x and y axis in meters.
@@ -41,7 +41,7 @@ class BoundarySet(object):
 
         ##getters and setters
 
-    def getXLow(self):
+    def get_x_low(self):
         return self.x_low
 
     def get_x_high(self):
@@ -62,11 +62,11 @@ class BoundarySet(object):
     def set_y_low(self, y_low):
         self.y_low = y_low
 
-    def setYHigh(self, y_high):
+    def set_y_high(self, y_high):
         self.y_high = y_high
 
 
-class Tile():
+class Tile:
     def __init__(self, size, x_tile_coord, y_tile_coord, tile_id, boundary_set, x_meter_coord, y_meter_coord): #xtilecoord and ytilecoord are in meters
         self.size = size #in meters
         self.x_tile_coord = x_tile_coord
@@ -82,37 +82,28 @@ class Tile():
         return self.size
     def get_x_coord(self):
         return self.x_tile_coord
-
     def get_y_coord(self):
         return self.y_tile_coord
-
     def get_x_meter_coord(self):
         return self.x_meter_coord
     def get_y_meter_coord(self):
         return self.y_meter_coord
-
     def get_tile_id(self):
         return self.tile_id
-
     def get_row(self, width):
         return self.tile_id / width
-
     def get_col(self, height):
         return self.tile_id % height
-
     def get_has_tag(self):
         return self.has_tag
+    def get_boundary(self, boundary_pos): ##get a specific boundary lmfao
 
-    def get_boundary(self, boundary_pos):
         if boundary_pos == 0:
-            return self.boundarySet.getXLow()
-
+            return self.boundarySet.get_x_low()
         elif boundary_pos == 1:
             return self.boundarySet.get_x_high()
-
         elif boundary_pos == 2:
             return self.boundarySet.get_y_low()
-
         elif boundary_pos == 3:
             return self.boundarySet.get_y_high()
         else:
@@ -123,7 +114,6 @@ class Tile():
 
     def set_size(self, size):
         self.size = size
-
     def set_x_tile_coord(self, x_tile_coord):
         self.x_tile_coord = x_tile_coord
     def set_y_tile_coord(self, y_tile_coord):
@@ -137,7 +127,7 @@ class Tile():
     def set_tile_id(self, y, width, x):
         tileID = y + width * x
         self.tile_id = tileID
-    def setBoundary(self, boundary_pos, boundary):
+    def set_boundary(self, boundary_pos, boundary):
         if boundary_pos == 0:
             self.boundarySet.set_x_low(boundary)
         elif boundary_pos == 1:
@@ -145,12 +135,12 @@ class Tile():
         elif boundary_pos == 2:
             self.boundarySet.set_y_low(boundary)
         elif boundary_pos == 3:
-            self.boundarySet.setYHigh(boundary)
+            self.boundarySet.set_y_high(boundary)
         else:
             self.boundarySet.set_x_low(0)
             self.boundarySet.set_x_high(0)
             self.boundarySet.set_y_low(0)
-            self.boundarySet.setYHigh(0)
+            self.boundarySet.set_y_high(0)
 
 
     def set_meter_coordinates(self, x_tile_coord, y_tile_coord): #sets the meter coordinates by multiplying the
