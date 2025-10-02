@@ -1,11 +1,10 @@
 #Icon Bool Set Class
-from backend.scripts.classes.sets.Borders_Bool_Set_Class import BorderBoolSet
-from backend.scripts.classes.sets.Doors_Bool_Set_Class import DoorBoolSet
-from backend.scripts.classes.sets.Windows_Bool_Set_Class import WindowsBoolSet
+from backend.scripts.classes.sets.TileBoolSetClass import TileBoolSet
+
 
 class IconBoolSet(object):
 #Constructor
-    def __init__(self, border_bool_set:BorderBoolSet, door_bool_set:DoorBoolSet, windows_bool_set:WindowsBoolSet, center_icon_bool):
+    def __init__(self, border_bool_set, door_bool_set, windows_bool_set, center_icon_bool):
         self.center_icon_bool = center_icon_bool
         self.door_bool_set = door_bool_set
         self.windows_bool_set = windows_bool_set

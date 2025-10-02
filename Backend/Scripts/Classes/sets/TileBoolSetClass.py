@@ -1,4 +1,4 @@
-class BorderBoolSet(object):
+class TileBoolSet(object):
     def __init__(self, north, south, east, west):
         self.north = north
         self.south = south
