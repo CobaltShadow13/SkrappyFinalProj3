@@ -1,13 +1,11 @@
 ###################################################Tilemap Helper Functions
 from backend.scripts.classes.TileClass import Tile
-from backend.scripts.classes.icons.Borders_Bool_Set_Class import BorderBoolSet
-from backend.scripts.classes.icons.Doors_Bool_Set_Class import DoorBoolSet
-from backend.scripts.classes.icons.Icon_Display_Set_Class import IconDisplaySet
-from backend.scripts.classes.BoundarySetClass import BoundarySet
-from backend.scripts.classes.icons.Icon_Bool_Set_Class import IconBoolSet
-from backend.scripts.classes.icons.Icon_File_Set_Class import IconFileSet
-from backend.scripts.classes.icons import *
-from backend.scripts.classes.icons.Windows_Bool_Set_Class import WindowsBoolSet
+from backend.scripts.classes.sets.Borders_Bool_Set_Class import BorderBoolSet
+from backend.scripts.classes.sets.Doors_Bool_Set_Class import DoorBoolSet
+from backend.scripts.classes.sets.Icon_Display_Set_Class import IconDisplaySet
+from backend.scripts.classes.sets.BoundarySetClass import BoundarySet
+from backend.scripts.classes.sets.Icon_Bool_Set_Class import IconBoolSet
+from backend.scripts.classes.sets.Windows_Bool_Set_Class import WindowsBoolSet
 import config
 
 def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap

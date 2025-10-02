@@ -1,4 +1,4 @@
-from backend.scripts.classes.icons.Icon_File_Set_Class import IconFileSet
+from backend.scripts.classes.sets.Icon_File_Set_Class import IconFileSet
 
 
 #Default Icons

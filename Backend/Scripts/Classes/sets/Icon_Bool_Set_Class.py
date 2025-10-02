@@ -1,7 +1,7 @@
 #Icon Bool Set Class
-from backend.scripts.classes.icons.Borders_Bool_Set_Class import BorderBoolSet
-from backend.scripts.classes.icons.Doors_Bool_Set_Class import DoorBoolSet
-from backend.scripts.classes.icons.Windows_Bool_Set_Class import WindowsBoolSet
+from backend.scripts.classes.sets.Borders_Bool_Set_Class import BorderBoolSet
+from backend.scripts.classes.sets.Doors_Bool_Set_Class import DoorBoolSet
+from backend.scripts.classes.sets.Windows_Bool_Set_Class import WindowsBoolSet
 
 class IconBoolSet(object):
 #Constructor
