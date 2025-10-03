@@ -35,7 +35,7 @@ class Grid(object):
 
 #Helper Functions
     def update_grid(self, tags):
-
+        has_tile_array = []
         for x in range(int(self.get_width())):
             for y in range(int(self.get_height())):
                 tile = self.tileMap[y][x]
@@ -45,10 +45,10 @@ class Grid(object):
                     in_y_low = False
                     in_y_high = False
 
-                    if tags[tag].get_x() < tile.get_boundary_set().get_x_high():
-                        if tags[tag].get_y() < tile.get_boundary_set().get_y_high():
-                            if tags[tag].get_y() >= tile.get_boundary_set().get_y_low():
-                                if tags[tag].get_x() >= tile.get_boundary_set().get_x_low():
+                    if tag.get_x() < tile.get_boundary_set().get_x_high():
+                        if tag.get_y() < tile.get_boundary_set().get_y_high():
+                            if tag.get_y() >= tile.get_boundary_set().get_y_low():
+                                if tag.get_x() >= tile.get_boundary_set().get_x_low():
                                     in_x_low = True
                                     in_x_high = True
                                     in_y_low = True
@@ -57,6 +57,7 @@ class Grid(object):
                     if in_x_low and in_x_high and in_y_low and in_y_high:
                         tile.set_has_tag(True)
                         tags[tag].set_tile(tile)
+
 
 
 ##initialize_grid helper function

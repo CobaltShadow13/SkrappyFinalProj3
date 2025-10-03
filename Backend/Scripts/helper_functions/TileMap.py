@@ -26,6 +26,16 @@ def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
             print("Y: ", tile_map[y][x].get_y_tile_coord())
 
 
+def reindex_by_tile_id(new_tile_map, width, height):
+    tile_id_index = []
+    for x in range(int(width)):
+        for y in range(int(height)):
+            tile_id_index.append(new_tile_map[x][y])
+
+    return tile_id_index
+
+
+
 def create_tile_map(width, height, width_m:float, height_m:float, tile_size):
     new_tile_map = []
     for x in range(int(width)):
@@ -42,4 +52,6 @@ def create_tile_map(width, height, width_m:float, height_m:float, tile_size):
 
         new_tile_map.append(column)
     set_tile_map(new_tile_map, width, height)
+    new_tile_map = reindex_by_tile_id(new_tile_map, width, height)
+
     return new_tile_map
