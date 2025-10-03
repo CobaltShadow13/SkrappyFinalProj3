@@ -23,6 +23,8 @@ class Grid(object):
         return self.x_meter_coord
     def get_y_meter_coord(self):
         return self.y_meter_coord
+    def get_tile(self, tile_id):
+        return self.get_tile_map()[tile_id]
 #Setters
     def set_width(self, width):
         self.width = width
