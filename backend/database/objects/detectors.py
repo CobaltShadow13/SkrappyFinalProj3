@@ -1,5 +1,5 @@
 from pupil_apriltags import Detector
-from backend_rename.scripts_rename.classes_rename.local_apriltags.LocalFamilyClass import player, house, board
+from backend.scripts.classes.local_apriltags.LocalFamilyClass import player, house, board
 
 
 player_detector = Detector(
