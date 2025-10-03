@@ -1,7 +1,7 @@
 #Imports
     ## Classes
 from backend.scripts.classes.local_opencv.LocalCameraClass import LocalCamera
-from backend.scripts.classes.grid.GridClass import initialize_grid
+from backend.scripts.classes.Board.grid.GridClass import initialize_grid
     ##Helper Functions
 from backend.scripts.utilities.apriltag_utilities.capture_frame import capture_frame
 from backend.scripts.utilities.general_utilities.conversions import inch_to_meters

@@ -1,4 +1,4 @@
-from backend.scripts.classes.grid.sets.Icon_File_Set_Class import IconFileSet
+from backend.scripts.classes.Board.grid.sets.Icon_File_Set_Class import IconFileSet
 
 
 #Default Icons

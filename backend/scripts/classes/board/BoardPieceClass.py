@@ -1,4 +1,4 @@
-#Board Piece Class
+#board Piece Class
 class BoardPiece(object):
 #Constructor
     def __init__(self, name, family, shape, total_size, tag_size, tag_id):

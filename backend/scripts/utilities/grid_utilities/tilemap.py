@@ -1,9 +1,9 @@
-###################################################Tilemap Helper Functions
-from backend.scripts.classes.grid.TileClass import Tile
-from backend.scripts.classes.grid.sets.TileBoolSetClass import TileBoolSet
-from backend.scripts.classes.grid.sets.Icon_Display_Set_Class import IconDisplaySet
-from backend.scripts.classes.grid.sets.BoundarySetClass import BoundarySet
-from backend.scripts.classes.grid.sets.Icon_Bool_Set_Class import IconBoolSet
+################################################### Tilemap Helper Functions
+from backend.scripts.classes.board.grid.TileClass import Tile
+from backend.scripts.classes.board.grid.sets.TileBoolSetClass import TileBoolSet
+from backend.scripts.classes.board.grid.sets.Icon_Display_Set_Class import IconDisplaySet
+from backend.scripts.classes.board.grid.sets.BoundarySetClass import BoundarySet
+from backend.scripts.classes.board.grid.sets.Icon_Bool_Set_Class import IconBoolSet
 import config
 
 def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
