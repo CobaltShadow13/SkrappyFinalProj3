@@ -1,11 +1,11 @@
 #Imports
     ## Classes
-from backend_rename.scripts_rename.classes_rename.local_opencv.LocalCameraClass import LocalCamera
-from backend_rename.scripts_rename.classes_rename.grid.GridClass import initialize_grid
+from backend.scripts.classes.local_opencv.LocalCameraClass import LocalCamera
+from backend.scripts.classes.grid.GridClass import initialize_grid
     ##Helper Functions
-from backend_rename.scripts_rename.utilities.apriltag_utilities.capture_frame import capture_frame
-from backend_rename.scripts_rename.utilities.general_utilities.conversions import inch_to_meters
-from backend_rename.database_rename.objects_rename.detectors import board_detector
+from backend.scripts.utilities.apriltag_utilities.capture_frame import capture_frame
+from backend.scripts.utilities.general_utilities.conversions import inch_to_meters
+from backend.database.objects.detectors import board_detector
 
 
 import cv2 as cv

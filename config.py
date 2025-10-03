@@ -1,4 +1,4 @@
-from backend_rename.scripts_rename.classes_rename.grid.sets.Icon_File_Set_Class import IconFileSet
+from backend.scripts.classes.grid.sets.Icon_File_Set_Class import IconFileSet
 
 
 #Default Icons
