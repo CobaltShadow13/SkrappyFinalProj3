@@ -30,10 +30,10 @@ class LocalFamily(object):
     def set_pieces(self, pieces):
         self.pieces = pieces
 
-###########################Hard Coded objects For Now#########################
-from backend.database.objects.shapes import player_shape
-from backend.database.objects.shapes import board_shape
-from backend.database.objects.shapes import house_shape_3x3
+###########################Hard Coded objects_rename For Now#########################
+from backend_rename.database_rename.objects_rename.shapes import player_shape
+from backend_rename.database_rename.objects_rename.shapes import board_shape
+from backend_rename.database_rename.objects_rename.shapes import house_shape_3x3
 
 house = LocalFamily("house", 100, 77.8, "tag25h9", house_shape_3x3)
 board = LocalFamily("board", 100, 75, "tag16h5", board_shape)

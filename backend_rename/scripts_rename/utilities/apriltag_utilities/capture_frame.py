@@ -1,8 +1,8 @@
-from backend.scripts.utilities.apriltag_utilities.drawing_utilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
+from backend_rename.scripts_rename.utilities.apriltag_utilities.drawing_utilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
 import cv2 as cv
 import time
-from backend.scripts.classes.local_apriltags.LocalFamilyClass import board
-from backend.scripts.classes.local_apriltags.LocalDetectionClass import LocalDetection
+from backend_rename.scripts_rename.classes_rename.local_apriltags.LocalFamilyClass import board
+from backend_rename.scripts_rename.classes_rename.local_apriltags.LocalDetectionClass import LocalDetection
 
 
 #### Ben notes of things to add ####
@@ -14,7 +14,7 @@ from backend.scripts.classes.local_apriltags.LocalDetectionClass import LocalDet
 ### 9/25/25 4:50 PM; Ben J - this function works by using the open computer vision library. It currently opens the webcam. Takes a frame and converts it to grayscale.
 ###################  it then uses the detector class to detect the different apriltags_tags in the frame, and print their tag and location to the command line
 ###################  next steps are going to be figuring out the calibration of the camera. So we should get a board or representation of the physical board ASAP.
-###################  figuring out what data is relevant to the positioning of actual objects in the grid. I will probably move on to creating a real representation of
+###################  figuring out what data is relevant to the positioning of actual objects_rename in the grid. I will probably move on to creating a real representation of
 ###################  the grid, and researching the division.
 
 
