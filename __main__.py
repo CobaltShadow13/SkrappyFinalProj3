@@ -1,10 +1,12 @@
 #Imports
     ## Classes
-from backend.scripts.classes.LocalCameraClass import LocalCamera
-from backend.scripts.classes.GridClass import initialize_grid
+from backend.scripts.classes.local_opencv.LocalCameraClass import LocalCamera
+from backend.scripts.classes.grid.GridClass import initialize_grid
     ##Helper Functions
-from backend.scripts.helper_functions.capture_frame import capture_frame
-from backend.scripts.helper_functions.conversions import inch_to_meters
+from backend.scripts.utilities.apriltag_utilities.capture_frame import capture_frame
+from backend.scripts.utilities.general_utilities.conversions import inch_to_meters
+from backend.database.objects.detectors import board_detector
+
 
 import cv2 as cv
 
@@ -16,7 +18,7 @@ def __main__():
     while True:
         #runs the capture frame every x seconds
         mainCamera = LocalCamera(cv.VideoCapture(0), 0, 0, 0, 0, None)
-        detection_tags = capture_frame(1, mainCamera)
+        detection_tags = capture_frame(1, mainCamera, board_detector)
         mapGrid.update_grid(detection_tags)
 
 

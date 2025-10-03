@@ -1,18 +1,16 @@
-from backend.scripts.classes import LocalFamilyClass, BoardPieceClass
-
-playerTag = familyClass.player.getTagID()
-playerTotalSize = familyClass.player.getTotalSize()
-playerTagSize = familyClass.player.getTagSize()
+playerTag = familyClass.player.get_tag_id()
+playerTotalSize = familyClass.player.get_total_size()
+playerTagSize = familyClass.player.get_tag_size()
 playerShape = familyClass.player.get_shape()
 
 houseShape = familyClass.house.get_shape()
-houseTag = familyClass.house.getTagFamily()
-houseTotalSize = familyClass.house.getTotalSize()
-houseTagSize = familyClass.house.getTagSize()
+houseTag = familyClass.house.get_tag_family()
+houseTotalSize = familyClass.house.get_total_size()
+houseTagSize = familyClass.house.get_tag_size()
 
-boardTag = familyClass.board.getTagFamily()
-boardTotalSize = familyClass.board.getTotalSize()
-boardTagSize = familyClass.board.getTagSize()
+boardTag = familyClass.board.get_tag_family()
+boardTotalSize = familyClass.board.get_total_size()
+boardTagSize = familyClass.board.get_tag_size()
 boardShape = familyClass.board.get_shape()
 
 

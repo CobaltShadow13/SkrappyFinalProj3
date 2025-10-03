@@ -1,9 +1,8 @@
-from backend.scripts.helper_functions.drawing_utilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
-from backend.database.objects.detectors import board_detector
+from backend.scripts.utilities.apriltag_utilities.drawing_utilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
 import cv2 as cv
 import time
-from backend.scripts.classes.LocalFamilyClass import board
-from backend.scripts.classes.LocalDetectionClass import LocalDetection
+from backend.scripts.classes.local_apriltags.LocalFamilyClass import board
+from backend.scripts.classes.local_apriltags.LocalDetectionClass import LocalDetection
 
 
 #### Ben notes of things to add ####
@@ -19,7 +18,7 @@ from backend.scripts.classes.LocalDetectionClass import LocalDetection
 ###################  the grid, and researching the division.
 
 
-def capture_frame(seconds, main_camera):
+def capture_frame(seconds, main_camera, detector):
     cam = main_camera.getCamera()
 
     frame_width = int(cam.get(cv.CAP_PROP_FRAME_WIDTH))
@@ -44,7 +43,7 @@ def capture_frame(seconds, main_camera):
     cy = main_camera.getcy() if main_camera.getcy() != 0 else h / 2
 
     # detect tags in the grayscale image
-    detections = board_detector.detect(gray, True, (fx,fy,cx,cy), board.getTagSize())
+    detections = detector.detect(gray, True, (fx,fy,cx,cy), board.get_tag_size())
 
     tags = []
 

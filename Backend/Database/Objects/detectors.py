@@ -1,9 +1,9 @@
 from pupil_apriltags import Detector
-from backend.scripts.classes.LocalFamilyClass import LocalFamily, player, house, board
+from backend.scripts.classes.local_apriltags.LocalFamilyClass import player, house, board
 
 
 player_detector = Detector(
-   families = player.tagFamily,
+   families = player.aprltag_family,
    nthreads=1,
    quad_decimate=1.0,
    quad_sigma=0.0,
@@ -13,7 +13,7 @@ player_detector = Detector(
 )
 
 house_detector = Detector(
-   families = house.tagFamily,
+   families = house.aprltag_family,
    nthreads=1,
    quad_decimate=1.0,
    quad_sigma=0.0,
@@ -23,7 +23,7 @@ house_detector = Detector(
 )
 
 board_detector = Detector(
-   families = board.tagFamily,
+   families = board.aprltag_family,
    nthreads=1,
    quad_decimate=1.0,
    quad_sigma=0.0,

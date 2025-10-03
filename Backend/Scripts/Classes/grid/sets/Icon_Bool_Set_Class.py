@@ -1,5 +1,4 @@
 #Icon Bool Set Class
-from backend.scripts.classes.sets.TileBoolSetClass import TileBoolSet
 
 
 class IconBoolSet(object):
