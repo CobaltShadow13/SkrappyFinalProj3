@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):
         bptw.setRowCount(bptw.rowCount() + 1)
         bptw.setItem(bptw.rowCount()-1, 0, QTableWidgetItem(board_piece.get_name()))
         bptw.setItem(bptw.rowCount()-1, 1, QTableWidgetItem(board_piece.get_apriltag_family().get_tag_family()))
-        bptw.setItem(bptw.rowCount()-1, 1, QTableWidgetItem(board_piece.get_tag_num()))
+        bptw.setItem(bptw.rowCount()-1, 2, QTableWidgetItem(str(board_piece.get_tag_num())))
 
 
     def on_create_board_piece(self):
