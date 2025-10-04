@@ -13,7 +13,7 @@ def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
     for x in range(int(width)):
         column = []
         for y in range(int(height)):
-            newTile = tile_map[y][x]
+            newTile = tile_map[x][y]
 
             newTile.set_x_tile_coord(x - xTileCoordOffset)
             newTile.set_y_tile_coord(y - yTileCoordOffset)
@@ -21,9 +21,9 @@ def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
             newTile.set_meter_coordinates(newTile.get_x_tile_coord(), newTile.get_y_tile_coord())
             newTile.auto_set_bounds()
 
-            print("Tile ID:", tile_map[y][x].get_tile_id())
-            print("X: ", tile_map[y][x].get_x_tile_coord())
-            print("Y: ", tile_map[y][x].get_y_tile_coord())
+            print("Tile ID:", tile_map[x][y].get_tile_id())
+            print("X: ", tile_map[x][y].get_x_tile_coord())
+            print("Y: ", tile_map[x][y].get_y_tile_coord())
 
 
 def reindex_by_tile_id(new_tile_map, width, height):

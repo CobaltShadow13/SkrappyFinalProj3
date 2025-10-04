@@ -1,6 +1,6 @@
 #Imports
 
-from backend.scripts.utilities.grid_utilities.tilemap import  create_tile_map
+from backend.scripts.utilities.board_utilities.grid_utilities.tilemap_utilities import  create_tile_map
 
 
 #Grid Class
