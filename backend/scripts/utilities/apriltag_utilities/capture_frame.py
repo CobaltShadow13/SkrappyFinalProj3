@@ -1,7 +1,8 @@
+import config
 from backend.scripts.utilities.apriltag_utilities.drawing_utilities import CENTER_COLOR, CORNER_COLOR, plot_point, plot_text
 import cv2 as cv
 import time
-from backend.scripts.classes.local_apriltags.LocalFamilyClass import board
+from backend.scripts.classes.board.BoardClass import Board
 from backend.scripts.classes.local_apriltags.LocalDetectionClass import LocalDetection
 
 
@@ -43,14 +44,12 @@ def capture_frame(seconds, main_camera, detector):
     cy = main_camera.getcy() if main_camera.getcy() != 0 else h / 2
 
     # detect tags in the grayscale image
-    detections = detector.detect(gray, True, (fx,fy,cx,cy), board.get_tag_size())
+    detections = detector.detect(gray, True, (fx,fy,cx,cy), config.default_tile_size_mm)
 
     tags = []
 
 #loop that takes all the tags detected in the grayscale frame and will later be used to return frame data to the map
     for tag in detections:
-
-
         x, y, z = tag.pose_t.flatten()
         print(tag.pose_t.flatten())
         print(f"Detected board tag ID: {tag.tag_id} at {tag.center}, X: {x} Y: {y} Z: {z}")
@@ -62,14 +61,8 @@ def capture_frame(seconds, main_camera, detector):
             gray = plot_point(gray, corner, CORNER_COLOR)
 
 
-    # display the image
+    # display the image for debugging
     cv.imshow("AprilTag Detection", gray)
-
-    # exit using the q key
-    if cv.waitKey(1) & 0xFF == ord('q'):
-        return 1
-
-    #delay time before ending the function call allows optimization
 
     time.sleep(seconds)
     # cleanup

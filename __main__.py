@@ -5,13 +5,11 @@ import sys
 from PySide6.QtWidgets import QApplication
 
 from backend.BackendClass import Backend
-from backend.scripts.classes.local_opencv.LocalCameraClass import LocalCamera
-from backend.scripts.classes.board.grid.GridClass import initialize_grid
-    ##Helper Functions
+##Helper Functions
+
 from backend.scripts.utilities.apriltag_utilities.capture_frame import capture_frame
-from backend.scripts.utilities.general_utilities.conversions import inch_to_meters
-from backend.database.objects.detectors import board_detector
-from frontend.user_interface.main_window_backend_interface import MainWindow
+from database.objects.detectors import board_detector
+from frontend.scripts.classes.user_interface.main_window_backend_interface import MainWindow
 
 
 

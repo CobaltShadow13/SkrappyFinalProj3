@@ -18,5 +18,11 @@ class Board(object):
 
 
 #Helper Functions
+    def update_board(self, apriltag_array):
+        self.get_grid().update(apriltag_array)
+
+
+
+
     ##Create New Board Piece
     ##SaveBoard
