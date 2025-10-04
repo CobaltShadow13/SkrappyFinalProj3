@@ -44,7 +44,7 @@ def capture_frame(seconds, main_camera, detector):
     cy = main_camera.getcy() if main_camera.getcy() != 0 else h / 2
 
     # detect tags in the grayscale image
-    detections = detector.detect(gray, True, (fx,fy,cx,cy), config.default_tile_size_mm)
+    detections = detector.detect(gray, True, (fx,fy,cx,cy), config.default_tag_size_mm)
 
     tags = []
 

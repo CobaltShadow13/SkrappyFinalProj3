@@ -25,7 +25,7 @@ def __main__():
 
         ##User interface stuff
         app = QApplication(sys.argv)
-        window = MainWindow()
+        window = MainWindow(backend)
         window.show()
         sys.exit(app.exec())
 

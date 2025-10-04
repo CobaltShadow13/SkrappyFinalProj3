@@ -1,4 +1,4 @@
-playerTag = familyClass.player.get_tag_id()
+playerTag = familyClass.player.get_tag_num()
 playerTotalSize = familyClass.player.get_total_size()
 playerTagSize = familyClass.player.get_tag_size()
 playerShape = familyClass.player.get_shape()

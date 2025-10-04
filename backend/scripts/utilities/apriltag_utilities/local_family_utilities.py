@@ -5,7 +5,7 @@ import config
 def initialize_families():
     families = []
     for dirs in config.directories:
-        new_family = LocalFamily(os.path.dirname(dirs), [], [])
+        new_family = LocalFamily(os.path.basename(dirs), [], [])
         for file in os.listdir(dirs):
             if file.endswith(".png"):
                 new_family.get_unassigned_tags().append(file)

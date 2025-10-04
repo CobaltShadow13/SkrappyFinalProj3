@@ -11,6 +11,8 @@ https://stackoverflow.com/questions/35988/c-like-structures-in-python
 https://stackoverflow.com/questions/63607029/creating-unique-id-for-tiles-in-grid-from-a-reference-point
 https://build-system.fman.io/qt-designer-download
 https://stackoverflow.com/questions/10377998/how-can-i-iterate-over-files-in-a-given-directory
+https://doc.qt.io/qtforpython-6/modules.html
+
 
 #Note: The tag size should not be measured from the outside of the tag. The tag size is defined as the distance between the
 detection corners, or alternately, the length of the edge between the white border and the black border.

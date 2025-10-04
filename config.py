@@ -24,6 +24,7 @@ prototype_height = 6.0  #Tiles
 
 default_tile_size_in = inch_to_meters(1)
 default_tile_size_mm = inch_to_meters(1) * 1000
+default_tag_size_mm = 19.6 #mm (with padding)
 
 default_camera = LocalCamera(cv.VideoCapture(0), 0, 0, 0, 0, None)
 
