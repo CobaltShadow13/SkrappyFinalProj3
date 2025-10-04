@@ -1,4 +1,5 @@
 import config
+import database.objects.shapes
 from backend.scripts.utilities.board_utilities.auto_sense_dimensions import auto_sense_dimensions
 from backend.scripts.utilities.board_utilities.board_utilities import create_board
 from backend.scripts.utilities.apriltag_utilities.local_family_utilities import initialize_families
@@ -21,6 +22,8 @@ class Backend(object):
         return self.camera
     def get_families(self):
         return self.families
+    def get_shapes(self):
+        return database.objects.shapes.shapes
 #Setters
     def set_board(self, board):
         self.board = board

@@ -15,45 +15,40 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QLabel,
-    QListWidget, QListWidgetItem, QMainWindow, QMenuBar,
-    QPushButton, QSizePolicy, QStatusBar, QTextEdit,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHeaderView,
+    QLabel, QMainWindow, QMenuBar, QPushButton,
+    QSizePolicy, QStatusBar, QTableWidget, QTableWidgetItem,
+    QTextEdit, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(803, 598)
+        MainWindow.resize(998, 806)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(100, 120, 79, 24))
-        self.label = QLabel(self.centralwidget)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(170, 30, 49, 16))
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(450, 10, 351, 161))
+        self.frame.setGeometry(QRect(590, 0, 401, 171))
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.create_board_piece_button = QPushButton(self.frame)
         self.create_board_piece_button.setObjectName(u"create_board_piece_button")
-        self.create_board_piece_button.setGeometry(QRect(210, 73, 111, 51))
+        self.create_board_piece_button.setGeometry(QRect(260, 90, 111, 51))
         self.board_piece_name_input = QTextEdit(self.frame)
         self.board_piece_name_input.setObjectName(u"board_piece_name_input")
         self.board_piece_name_input.setGeometry(QRect(10, 20, 161, 31))
         self.board_piece_name_input.setLineWidth(13)
         self.apriltag_family_input_box = QComboBox(self.frame)
+        self.apriltag_family_input_box.addItem("")
         self.apriltag_family_input_box.setObjectName(u"apriltag_family_input_box")
-        self.apriltag_family_input_box.setGeometry(QRect(200, 20, 131, 31))
+        self.apriltag_family_input_box.setGeometry(QRect(250, 20, 131, 31))
         self.board_piece_name_label = QLabel(self.frame)
         self.board_piece_name_label.setObjectName(u"board_piece_name_label")
         self.board_piece_name_label.setGeometry(QRect(70, 0, 49, 16))
         self.board_piece_name_label_2 = QLabel(self.frame)
         self.board_piece_name_label_2.setObjectName(u"board_piece_name_label_2")
-        self.board_piece_name_label_2.setGeometry(QRect(240, 0, 41, 16))
+        self.board_piece_name_label_2.setGeometry(QRect(290, 0, 41, 16))
         self.board_piece_shape_label = QLabel(self.frame)
         self.board_piece_shape_label.setObjectName(u"board_piece_shape_label")
         self.board_piece_shape_label.setGeometry(QRect(70, 80, 41, 16))
@@ -61,14 +56,30 @@ class Ui_MainWindow(object):
         self.board_piece_shape_input_box.addItem("")
         self.board_piece_shape_input_box.setObjectName(u"board_piece_shape_input_box")
         self.board_piece_shape_input_box.setGeometry(QRect(10, 100, 161, 31))
-        self.listWidget = QListWidget(self.centralwidget)
-        QListWidgetItem(self.listWidget)
-        self.listWidget.setObjectName(u"listWidget")
-        self.listWidget.setGeometry(QRect(460, 190, 331, 351))
+        self.board_piece_table_widget = QTableWidget(self.centralwidget)
+        if (self.board_piece_table_widget.columnCount() < 3):
+            self.board_piece_table_widget.setColumnCount(3)
+        __qtablewidgetitem = QTableWidgetItem()
+        self.board_piece_table_widget.setHorizontalHeaderItem(0, __qtablewidgetitem)
+        __qtablewidgetitem1 = QTableWidgetItem()
+        self.board_piece_table_widget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
+        __qtablewidgetitem2 = QTableWidgetItem()
+        self.board_piece_table_widget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        self.board_piece_table_widget.setObjectName(u"board_piece_table_widget")
+        self.board_piece_table_widget.setGeometry(QRect(630, 200, 341, 541))
+        self.board_grid_table_widget = QTableWidget(self.centralwidget)
+        self.board_grid_table_widget.setObjectName(u"board_grid_table_widget")
+        self.board_grid_table_widget.setGeometry(QRect(20, 180, 581, 551))
+        self.board_grid_label = QLabel(self.centralwidget)
+        self.board_grid_label.setObjectName(u"board_grid_label")
+        self.board_grid_label.setGeometry(QRect(280, 160, 61, 16))
+        self.label = QLabel(self.centralwidget)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(780, 180, 49, 16))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 803, 33))
+        self.menubar.setGeometry(QRect(0, 0, 998, 33))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -81,8 +92,6 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"TestButton", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"TestLabel", None))
         self.create_board_piece_button.setText(QCoreApplication.translate("MainWindow", u"Create New Piece", None))
         self.board_piece_name_input.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
@@ -99,12 +108,13 @@ class Ui_MainWindow(object):
         self.board_piece_shape_label.setText(QCoreApplication.translate("MainWindow", u"Shape", None))
         self.board_piece_shape_input_box.setItemText(0, QCoreApplication.translate("MainWindow", u"New Item", None))
 
-
-        __sortingEnabled = self.listWidget.isSortingEnabled()
-        self.listWidget.setSortingEnabled(False)
-        ___qlistwidgetitem = self.listWidget.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"New Item", None));
-        self.listWidget.setSortingEnabled(__sortingEnabled)
-
+        ___qtablewidgetitem = self.board_piece_table_widget.horizontalHeaderItem(0)
+        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Name", None));
+        ___qtablewidgetitem1 = self.board_piece_table_widget.horizontalHeaderItem(1)
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Family", None));
+        ___qtablewidgetitem2 = self.board_piece_table_widget.horizontalHeaderItem(2)
+        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Tag #", None));
+        self.board_grid_label.setText(QCoreApplication.translate("MainWindow", u"Board Grid", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
     # retranslateUi
 
