@@ -1,4 +1,6 @@
 #Board Piece Class
+from backend.scripts.utilities.general_utilities.conversions import convert_to_apriltag_path
+
 class BoardPiece(object):
 #Constructor
     def __init__(self, name, apriltag_family, shape, tag_num, tag_image):
@@ -7,6 +9,7 @@ class BoardPiece(object):
         self.shape = shape
         self.tag_num = tag_num
         self.tag_image = tag_image
+        self.set_dir()
 # Getters
     def get_name(self):
         return self.name
@@ -29,5 +32,11 @@ class BoardPiece(object):
         self.tag_num = tag_id
     def set_tag_image(self, tag_image):
         self.tag_image = tag_image
+    def set_dir(self):
+        base_directory = self.get_apriltag_family().get_directory()
+        tag_num = self.get_tag_num()
+        tag_family = self.get_apriltag_family()
+        convert_to_apriltag_path(base_directory,tag_family, tag_num)
 
+#Helper Functinos
 ######################################################################################################################################################################################

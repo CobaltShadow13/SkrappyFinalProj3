@@ -1,11 +1,12 @@
 #LocalFamily Class
 class LocalFamily(object):
 #Constructor
-    def __init__(self, tag_family, unassigned_tags, assigned_tags):
+    def __init__(self, tag_family, unassigned_tags, assigned_tags, directory):
         self.tag_family = tag_family
         self.unassigned_tags = unassigned_tags
         self.assigned_tags = assigned_tags
         self.assigned_tags_num = 0
+        self.directory = directory
 #Getters
     def get_tag_family(self):
         return self.tag_family
@@ -15,6 +16,8 @@ class LocalFamily(object):
         return self.assigned_tags
     def get_assigned_tags_num(self):
         return self.assigned_tags_num
+    def get_directory(self):
+        return self.directory
 #Setters
     def set_tag_family(self, tag_family):
         self.tag_family = tag_family
@@ -24,9 +27,12 @@ class LocalFamily(object):
         self.assigned_tags = assigned_tags
     def set_assigned_tags_num(self, assigned_tags_num):
         self.assigned_tags_num = assigned_tags_num
+    def set_directory(self, directory):
+        self.directory = directory
 
     def assign_tag(self):
         if len(self.unassigned_tags) > 0:
+            self.assigned_tags_num += 1
             return self.unassigned_tags.pop(0)
         else:
             return None

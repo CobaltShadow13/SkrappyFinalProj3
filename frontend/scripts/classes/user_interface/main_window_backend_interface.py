@@ -7,7 +7,7 @@ from frontend.scripts.classes.user_interface.main_window_class import Ui_MainWin
 class TileTableWidgetItem(QTableWidgetItem):
     def __init__(self, tile):
         super().__init__()
-        self.setText(f"({int(tile.get_x_tile_coord())},{int(tile.get_y_tile_coord())})")
+        self.setText(f"(({int(tile.get_x_tile_coord())}, {int(tile.get_y_tile_coord())})")
         self.tile = tile
     def get_tile(self):
         return self.tile
@@ -61,7 +61,7 @@ class MainWindow(QMainWindow):
 
         cell_width = table_width / table.columnCount()
         cell_height = table_height / table.rowCount()
-        side = min(cell_width, cell_height)+100
+        side = min(cell_width, cell_height)
 
         for x in range(table.columnCount()):
             table.setColumnWidth(x, side)

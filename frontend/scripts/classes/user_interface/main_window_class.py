@@ -23,6 +23,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHeaderView,
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
+
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1375, 893)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
@@ -64,16 +65,20 @@ class Ui_MainWindow(object):
         self.board_piece_shape_input_box.setObjectName(u"board_piece_shape_input_box")
         self.board_piece_shape_input_box.setGeometry(QRect(10, 90, 161, 31))
         self.board_piece_table_widget = QTableWidget(self.centralwidget)
-        if (self.board_piece_table_widget.columnCount() < 3):
-            self.board_piece_table_widget.setColumnCount(3)
+        if (self.board_piece_table_widget.columnCount() < 4):
+            self.board_piece_table_widget.setColumnCount(4)
         __qtablewidgetitem = QTableWidgetItem()
         self.board_piece_table_widget.setHorizontalHeaderItem(0, __qtablewidgetitem)
         __qtablewidgetitem1 = QTableWidgetItem()
         self.board_piece_table_widget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
         self.board_piece_table_widget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentPrint))
+        __qtablewidgetitem3 = QTableWidgetItem()
+        __qtablewidgetitem3.setIcon(icon);
+        self.board_piece_table_widget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.board_piece_table_widget.setObjectName(u"board_piece_table_widget")
-        self.board_piece_table_widget.setGeometry(QRect(940, 250, 341, 541))
+        self.board_piece_table_widget.setGeometry(QRect(940, 250, 331, 541))
         self.board_grid_table_widget = QTableWidget(self.centralwidget)
         self.board_grid_table_widget.setObjectName(u"board_grid_table_widget")
         self.board_grid_table_widget.setGeometry(QRect(30, 20, 861, 821))
@@ -127,7 +132,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem = self.board_piece_table_widget.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Name", None));
         ___qtablewidgetitem1 = self.board_piece_table_widget.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Family", None));
+        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Tag Family", None));
         ___qtablewidgetitem2 = self.board_piece_table_widget.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Tag #", None));
         self.board_grid_label.setText(QCoreApplication.translate("MainWindow", u"Board Grid", None))
