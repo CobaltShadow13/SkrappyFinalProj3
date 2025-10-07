@@ -14,7 +14,7 @@ from PySide6.QtGui import QIcon
 class TileTableWidgetItem(QTableWidgetItem):
     def __init__(self, tile):
         super().__init__()
-        self.setText(f"(({int(tile.get_x_tile_coord())}, {int(tile.get_y_tile_coord())})")
+        self.setText(f"{int(tile.get_has_tag())}")
         self.tile = tile
     def get_tile(self):
         return self.tile

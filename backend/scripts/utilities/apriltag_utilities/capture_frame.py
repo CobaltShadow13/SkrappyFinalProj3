@@ -29,7 +29,7 @@ def capture_frame(seconds, main_camera, detector):
     ##good practice error check, maybe my camera is off
     if not ret:
         print("Failed process, Exiting Now")
-        return 0
+        return []
 
     ##Fix undistort raw image
     frame = rawFrame
@@ -62,12 +62,11 @@ def capture_frame(seconds, main_camera, detector):
 
 
     # display the image for debugging
-    cv.imshow("AprilTag Detection", gray)
+    #cv.imshow("AprilTag Detection", gray)
 
     time.sleep(seconds)
     # cleanup
-    cam.release()
-    cv.destroyAllWindows()
+    #cv.destroyAllWindows()
 
     return tags
 

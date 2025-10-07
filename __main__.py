@@ -2,6 +2,7 @@
     ## Classes
 import sys
 import keyboard
+from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QApplication
 
 from backend.BackendClass import Backend
@@ -14,20 +15,21 @@ from frontend.scripts.classes.user_interface.main_window_backend_interface impor
 
 
 def __main__():
-    # Make the grid generalizable later (by that I mean detect the corners for width and height and ask the DM if those are correct, then allow them to change them in the UI
-
     backend = Backend()
 
-    while True:
-        #runs the capture frame every x seconds
-        detection_tags = capture_frame(1, backend.get_camera(), board_detector)
-        backend.get_board().get_grid().update_grid(detection_tags)
+    # User interface setup
+    app = QApplication(sys.argv)
+    window = MainWindow(backend)
+    window.show()
 
-        ##User interface stuff
-        app = QApplication(sys.argv)
-        window = MainWindow(backend)
-        window.show()
-        #if keyboard.is_pressed("q"):
-        sys.exit(app.exec())
+    # Timer to periodically run capture_frame and update grid
+    timer = QTimer()
+    timer.timeout.connect(lambda: backend.get_board().get_grid().update_grid(
+        capture_frame(1, backend.get_camera(), board_detector)
+    ))
+    timer.start(30000)  # every 1000 ms = 1 second
+
+    # Start the Qt event loop (blocks here, but timer keeps running)
+    sys.exit(app.exec())
 
 __main__()

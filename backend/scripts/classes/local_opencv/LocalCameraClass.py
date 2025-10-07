@@ -1,7 +1,8 @@
 import cv2 as cv
+import cv2.aruco as aruco
 import numpy as np
 import glob
-
+#https://calib.io/pages/camera-calibration-pattern-generator
 
 class LocalCamera(object):
     def __init__(self, camera, fx = None, fy = None, cx = None, cy = None, dist = None):
@@ -56,48 +57,48 @@ class LocalCamera(object):
 
     ### Helper Functions ###
 
-    def calibrateCamera(self, pattern_size=(24, 24)):
-        criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
+    def calibrate_camera(self, board_size=(6, 6), square_size=0.015, marker_size=0.0105):
+        # Create dictionary and board
+        dictionary = aruco.getPredefinedDictionary(aruco.DICT_4X4_50)
+        board = aruco.CharucoBoard(board_size, square_size, marker_size, dictionary)
 
-        # prepare object points
-        square_size = 0.0254
-        objp = np.zeros((pattern_size[0] * pattern_size[1], 3), np.float32)
-        objp[:, :2] = np.mgrid[0:pattern_size[0], 0:pattern_size[1]].T.reshape(-1, 2) * square_size
+        all_corners = []
+        all_ids = []
+        image_size = None
 
-        objpoints = []  # 3d points
-        imgpoints = []  # 2d points
-
-        images = glob.glob('*.jpg')
+        images = glob.glob("*.jpg")
         if not images:
             raise FileNotFoundError("No calibration images found.")
 
         for fname in images:
             img = cv.imread(fname)
             gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-
-            ret, corners = cv.findChessboardCorners(gray, pattern_size, None)
-            if ret:
-                objpoints.append(objp)
-                corners2 = cv.cornerSubPix(gray, corners, (11, 11), (-1, -1), criteria)
-                imgpoints.append(corners2)
-
-                cv.drawChessboardCorners(img, pattern_size, corners2, ret)
-                cv.imshow('Calibration', img)
-                cv.waitKey(250)
+            corners, ids, _ = aruco.detectMarkers(gray, dictionary)
+            if len(corners) > 0:
+                _, charuco_corners, charuco_ids = aruco.interpolateCornersCharuco(corners, ids, gray, board)
+                if charuco_corners is not None and len(charuco_corners) > 3:
+                    all_corners.append(charuco_corners)
+                    all_ids.append(charuco_ids)
+                    if image_size is None:
+                        image_size = gray.shape[::-1]
+                    cv.aruco.drawDetectedCornersCharuco(img, charuco_corners, charuco_ids)
+                    cv.imshow("Calibration", img)
+                    cv.waitKey(200)
 
         cv.destroyAllWindows()
 
-        # calibrate
-        ret, mtx, dist, rvecs, tvecs = cv.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
+        ret, mtx, dist, rvecs, tvecs = aruco.calibrateCameraCharuco(
+            all_corners, all_ids, board, image_size, None, None
+        )
 
-        # update class values
+        # Store values just like your current code
         self.setfx(mtx[0, 0])
         self.setfy(mtx[1, 1])
         self.setcx(mtx[0, 2])
         self.setcy(mtx[1, 2])
         self.setdist(dist)
 
-        np.savez("calibration.npz", mtx=mtx, dist=dist)
+        np.savez("calibration_charuco.npz", mtx=mtx, dist=dist)
 
         return mtx, dist, rvecs, tvecs
 
