@@ -1,7 +1,7 @@
 import cv2 as cv
-import cv2.aruco as aruco
 import numpy as np
 import glob
+import os
 #https://calib.io/pages/camera-calibration-pattern-generator
 
 class LocalCamera(object):
@@ -57,85 +57,110 @@ class LocalCamera(object):
 
     ### Helper Functions ###
 
-    def calibrate_camera(self, board_size=(6, 6), square_size=0.025, marker_size=0.0178):
-        # --- Create the dictionary and ChArUco board ---
-        dictionary = cv.aruco.getPredefinedDictionary(cv.aruco.DICT_4X4_100)
-        board = cv.aruco.CharucoBoard(board_size, square_size, marker_size, dictionary)
+    def calibrate_camera(self, image_folder=r"D:\SERAPH_AI\SkrappyFinalProj3\database\assets\calibration_images"):
 
-        # --- Initialize the new API detector objects ---
-        aruco_params = cv.aruco.DetectorParameters()
-        aruco_detector = cv.aruco.ArucoDetector(dictionary, aruco_params)
-        charuco_detector = cv.aruco.CharucoDetector(board)
 
-        all_corners = []
-        all_ids = []
+        # --- Create ArUco dictionary and ChArUco board ---
+        dictionary = cv.aruco.getPredefinedDictionary(cv.aruco.DICT_4X4_50)
+        board = cv.aruco.CharucoBoard(
+            (6, 6),  # squaresX, squaresY
+            0.015,  # squareLength in meters
+            0.011,  # markerLength in meters
+            dictionary
+        )
+
+        aruco_detector = cv.aruco.ArucoDetector(dictionary)
+
+        all_charuco_corners = []
+        all_charuco_ids = []
         image_size = None
 
-        # --- Load calibration images ---
-        images = glob.glob(r"D:\SERAPH_AI\SkrappyFinalProj3\database\assets\calibration_images\*.jpg")
+        # --- Load images ---
+        images = glob.glob(os.path.join(image_folder, "*.jpg"))
         if not images:
-            raise FileNotFoundError("No calibration images found at the given path.")
+            raise FileNotFoundError(f"No images found in folder: {image_folder}")
+        print(f"🔍 Found {len(images)} calibration images.")
 
-        print(f"Found {len(images)} calibration images.")
-
-        for fname in images:
+        for idx, fname in enumerate(images):
             img = cv.imread(fname)
             if img is None:
-                print(f"⚠️ Skipping unreadable file: {fname}")
+                print(f"Could not read image: {fname}")
                 continue
 
             gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-            gray = cv.equalizeHist(gray)
 
-            # --- Detect ArUco markers ---
-            corners, ids, rejected = aruco_detector.detectMarkers(gray)
+            corners, ids, _ = aruco_detector.detectMarkers(gray)
+
+            img_markers = img.copy()
+            cv.aruco.drawDetectedMarkers(img_markers, corners, ids)
+
+            for i, c in enumerate(corners):
+                print(f"Marker {ids[i][0]} corners:\n{c}")
+            if ids is not None:
+                print("Detected marker IDs:", ids.flatten())
+            cv.imshow("ArUco Detection", img_markers)
+            cv.waitKey(500)
 
             if ids is not None and len(ids) > 0:
-                # --- Detect ChArUco corners (new API: returns only 2 values) ---
-                charuco_corners, charuco_ids = charuco_detector.detectBoard(gray)
-
-                if charuco_corners is not None and len(charuco_corners) > 3:
-                    all_corners.append(charuco_corners)
-                    all_ids.append(charuco_ids)
-
+                # Interpolate ChArUco corners
+                retval, charuco_corners, charuco_ids = cv.aruco.interpolateCornersCharuco(
+                    markerCorners=corners,
+                    markerIds=ids,
+                    image=gray,
+                    board=board
+                )
+                print("retval:", retval, "charuco_corners:", charuco_corners, "charuco_ids:", charuco_ids)
+                print(f"Detected markers: {ids}, ChArUco corners: {charuco_corners}")
+                if retval is not None and retval > 3:
+                    print(f"Appending {retval} corners:", charuco_corners.flatten())
+                    all_charuco_corners.append(charuco_corners)
+                    all_charuco_ids.append(charuco_ids)
+                if retval > 0:  # Need at least 4 corners
+                    all_charuco_corners.append(charuco_corners)
+                    all_charuco_ids.append(charuco_ids)
                     if image_size is None:
                         image_size = gray.shape[::-1]
 
-                    # Draw detections
+                    # Visualization
                     cv.aruco.drawDetectedMarkers(img, corners, ids)
                     cv.aruco.drawDetectedCornersCharuco(img, charuco_corners, charuco_ids)
-                    cv.imshow("Calibration", img)
+                    cv.imshow("ChArUco Calibration", img)
+                    print("Detected marker IDs:", ids.flatten())
                     cv.waitKey(200)
+
+                    print(
+                        f"✅ Processed image {idx + 1}/{len(images)}: {os.path.basename(fname)} - {len(charuco_ids)} corners")
                 else:
-                    print(f"⚠️ No ChArUco corners found in {fname}")
+                    print(f"Not enough ChArUco corners in image: {fname}")
             else:
-                print(f"⚠️ No ArUco markers detected in {fname}")
+                print(f"No markers detected in image: {fname}")
 
         cv.destroyAllWindows()
 
-        if not all_corners:
-            raise RuntimeError("No ChArUco corners were detected. Check lighting and board visibility.")
+        if not all_charuco_corners:
+            raise RuntimeError("No ChArUco corners detected. Check lighting, focus, and dictionary.")
 
         # --- Calibrate camera ---
         ret, mtx, dist, rvecs, tvecs = cv.aruco.calibrateCameraCharuco(
-            charucoCorners=all_corners,
-            charucoIds=all_ids,
+            charucoCorners=all_charuco_corners,
+            charucoIds=all_charuco_ids,
             board=board,
             imageSize=image_size,
             cameraMatrix=None,
             distCoeffs=None
         )
 
-        # --- Store calibration parameters ---
+        # --- Store results in your object ---
         self.setfx(mtx[0, 0])
         self.setfy(mtx[1, 1])
         self.setcx(mtx[0, 2])
         self.setcy(mtx[1, 2])
         self.setdist(dist)
 
+        # --- Save calibration ---
         np.savez("calibration_charuco.npz", mtx=mtx, dist=dist)
 
-        print("✅ Calibration complete!")
+        print("\nChArUco Calibration complete")
         print("RMS error:", ret)
         print("Camera matrix:\n", mtx)
         print("Distortion coefficients:\n", dist)
