@@ -57,41 +57,76 @@ class LocalCamera(object):
 
     ### Helper Functions ###
 
-    def calibrate_camera(self, board_size=(6, 6), square_size=0.015, marker_size=0.0105):
-        # Create dictionary and board
-        dictionary = aruco.getPredefinedDictionary(aruco.DICT_4X4_50)
-        board = aruco.CharucoBoard(board_size, square_size, marker_size, dictionary)
+    def calibrate_camera(self, board_size=(6, 6), square_size=0.025, marker_size=0.0178):
+        # --- Create the dictionary and ChArUco board ---
+        dictionary = cv.aruco.getPredefinedDictionary(cv.aruco.DICT_4X4_100)
+        board = cv.aruco.CharucoBoard(board_size, square_size, marker_size, dictionary)
+
+        # --- Initialize the new API detector objects ---
+        aruco_params = cv.aruco.DetectorParameters()
+        aruco_detector = cv.aruco.ArucoDetector(dictionary, aruco_params)
+        charuco_detector = cv.aruco.CharucoDetector(board)
 
         all_corners = []
         all_ids = []
         image_size = None
 
-        images = glob.glob("*.jpg")
+        # --- Load calibration images ---
+        images = glob.glob(r"D:\SERAPH_AI\SkrappyFinalProj3\database\assets\calibration_images\*.jpg")
         if not images:
-            raise FileNotFoundError("No calibration images found.")
+            raise FileNotFoundError("No calibration images found at the given path.")
+
+        print(f"Found {len(images)} calibration images.")
 
         for fname in images:
             img = cv.imread(fname)
+            if img is None:
+                print(f"⚠️ Skipping unreadable file: {fname}")
+                continue
+
             gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-            corners, ids, _ = aruco.detectMarkers(gray, dictionary)
-            if len(corners) > 0:
-                _, charuco_corners, charuco_ids = aruco.interpolateCornersCharuco(corners, ids, gray, board)
+            gray = cv.equalizeHist(gray)
+
+            # --- Detect ArUco markers ---
+            corners, ids, rejected = aruco_detector.detectMarkers(gray)
+
+            if ids is not None and len(ids) > 0:
+                # --- Detect ChArUco corners (new API: returns only 2 values) ---
+                charuco_corners, charuco_ids = charuco_detector.detectBoard(gray)
+
                 if charuco_corners is not None and len(charuco_corners) > 3:
                     all_corners.append(charuco_corners)
                     all_ids.append(charuco_ids)
+
                     if image_size is None:
                         image_size = gray.shape[::-1]
+
+                    # Draw detections
+                    cv.aruco.drawDetectedMarkers(img, corners, ids)
                     cv.aruco.drawDetectedCornersCharuco(img, charuco_corners, charuco_ids)
                     cv.imshow("Calibration", img)
                     cv.waitKey(200)
+                else:
+                    print(f"⚠️ No ChArUco corners found in {fname}")
+            else:
+                print(f"⚠️ No ArUco markers detected in {fname}")
 
         cv.destroyAllWindows()
 
-        ret, mtx, dist, rvecs, tvecs = aruco.calibrateCameraCharuco(
-            all_corners, all_ids, board, image_size, None, None
+        if not all_corners:
+            raise RuntimeError("No ChArUco corners were detected. Check lighting and board visibility.")
+
+        # --- Calibrate camera ---
+        ret, mtx, dist, rvecs, tvecs = cv.aruco.calibrateCameraCharuco(
+            charucoCorners=all_corners,
+            charucoIds=all_ids,
+            board=board,
+            imageSize=image_size,
+            cameraMatrix=None,
+            distCoeffs=None
         )
 
-        # Store values just like your current code
+        # --- Store calibration parameters ---
         self.setfx(mtx[0, 0])
         self.setfy(mtx[1, 1])
         self.setcx(mtx[0, 2])
@@ -99,6 +134,11 @@ class LocalCamera(object):
         self.setdist(dist)
 
         np.savez("calibration_charuco.npz", mtx=mtx, dist=dist)
+
+        print("✅ Calibration complete!")
+        print("RMS error:", ret)
+        print("Camera matrix:\n", mtx)
+        print("Distortion coefficients:\n", dist)
 
         return mtx, dist, rvecs, tvecs
 

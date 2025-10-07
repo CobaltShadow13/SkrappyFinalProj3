@@ -13,10 +13,9 @@ from database.objects.detectors import board_detector
 from frontend.scripts.classes.user_interface.main_window_backend_interface import MainWindow
 
 
-
 def __main__():
     backend = Backend()
-
+    backend.camera.calibrate_camera()
     # User interface setup
     app = QApplication(sys.argv)
     window = MainWindow(backend)
