@@ -2,20 +2,22 @@ import os
 
 from backend.scripts.classes.local_apriltags.LocalFamilyClass import LocalFamily
 import config
+import os
+
 def initialize_families():
     families = []
-    for dirs in config.directories:
-        new_family = LocalFamily(os.path.basename(dirs), [], [], dirs)
-        for file in os.listdir(dirs):
-            if file.endswith(".png"):
-                new_family.get_unassigned_tags().append(file)
-            else:
-                continue
-        families.append(new_family)
-    detector_families = []
-    for family in families:
-        new_tfs = family.get_tag_family()
-        detector_families.append(new_tfs)
+    base_dir = config.base_family_dir
 
-    config.tag_family_strings = " ".join(detector_families)
+    for dirs in os.listdir(base_dir):
+        dir_path = os.path.join(base_dir, dirs)
+        if not os.path.isdir(dir_path):
+            continue  # skip files, only keep folders
+
+        png_files = [f for f in os.listdir(dir_path) if f.endswith(".png")]
+
+        new_family = LocalFamily(os.path.basename(dir_path), png_files, [])
+        families.append(new_family)
+
+
+    config.tag_family_strings = " ".join(f.get_tag_family() for f in families)
     return families

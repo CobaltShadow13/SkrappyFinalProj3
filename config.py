@@ -29,9 +29,6 @@ default_tag_size_mm = 19.6 #mm (with padding)
 default_camera = LocalCamera(cv.VideoCapture(0), 0, 0, 0, 0, None)
 
 #Default Tag Family Directories
-dir1 = "D:\\SERAPH_AI\\SkrappyFinalProj3\\database\\assets\\apriltag-imgs-master\\tag16h5"
-dir2 = "D:\\SERAPH_AI\\SkrappyFinalProj3\\database\\assets\\apriltag-imgs-master\\tag25h9"
-dir3 = "D:\\SERAPH_AI\\SkrappyFinalProj3\\database\\assets\\apriltag-imgs-master\\tag36h11"
-dir4 = "D:\\SERAPH_AI\\SkrappyFinalProj3\\database\\assets\\apriltag-imgs-master\\tagCircle21h7"
+base_family_dir = r"D:\SERAPH_AI\SkrappyFinalProj3\database\assets\apriltag-imgs-master"
 
-directories = [dir1, dir2, dir3, dir4]
+

@@ -1,7 +1,7 @@
 #Imports
     ## Classes
 import sys
-
+import keyboard
 from PySide6.QtWidgets import QApplication
 
 from backend.BackendClass import Backend
@@ -27,6 +27,7 @@ def __main__():
         app = QApplication(sys.argv)
         window = MainWindow(backend)
         window.show()
+        #if keyboard.is_pressed("q"):
         sys.exit(app.exec())
 
 __main__()

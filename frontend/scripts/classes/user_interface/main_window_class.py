@@ -23,7 +23,6 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHeaderView,
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
-
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1375, 893)
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
@@ -37,7 +36,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.frame = QFrame(self.centralwidget)
         self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(940, 40, 331, 171))
+        self.frame.setGeometry(QRect(980, 30, 331, 171))
         self.frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.create_board_piece_button = QPushButton(self.frame)
@@ -73,12 +72,10 @@ class Ui_MainWindow(object):
         self.board_piece_table_widget.setHorizontalHeaderItem(1, __qtablewidgetitem1)
         __qtablewidgetitem2 = QTableWidgetItem()
         self.board_piece_table_widget.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.DocumentPrint))
         __qtablewidgetitem3 = QTableWidgetItem()
-        __qtablewidgetitem3.setIcon(icon);
         self.board_piece_table_widget.setHorizontalHeaderItem(3, __qtablewidgetitem3)
         self.board_piece_table_widget.setObjectName(u"board_piece_table_widget")
-        self.board_piece_table_widget.setGeometry(QRect(940, 250, 331, 541))
+        self.board_piece_table_widget.setGeometry(QRect(940, 210, 411, 541))
         self.board_grid_table_widget = QTableWidget(self.centralwidget)
         self.board_grid_table_widget.setObjectName(u"board_grid_table_widget")
         self.board_grid_table_widget.setGeometry(QRect(30, 20, 861, 821))
@@ -96,7 +93,7 @@ class Ui_MainWindow(object):
         self.board_grid_label.setGeometry(QRect(380, 0, 61, 16))
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(1060, 220, 71, 20))
+        self.label.setGeometry(QRect(1110, 0, 71, 20))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -135,6 +132,8 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Tag Family", None));
         ___qtablewidgetitem2 = self.board_piece_table_widget.horizontalHeaderItem(2)
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Tag #", None));
+        ___qtablewidgetitem3 = self.board_piece_table_widget.horizontalHeaderItem(3)
+        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Print?", None));
         self.board_grid_label.setText(QCoreApplication.translate("MainWindow", u"Board Grid", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Board Pieces", None))
     # retranslateUi

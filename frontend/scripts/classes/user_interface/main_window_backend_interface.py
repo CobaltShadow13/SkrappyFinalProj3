@@ -1,7 +1,14 @@
+import os
+import time
+
 from PyQt6.QtWidgets import QHeaderView
 from PySide6.QtWidgets import QMainWindow, QWidget, QPushButton, QTableWidgetItem, QTableWidget, QHeaderView
+
+import config
 from backend.scripts.utilities.board_utilities.board_utilities import create_board_piece
+from backend.scripts.utilities.general_utilities.conversions import convert_to_apriltag_path, png_to_svg
 from frontend.scripts.classes.user_interface.main_window_class import Ui_MainWindow
+from PySide6.QtGui import QIcon
 
 
 class TileTableWidgetItem(QTableWidgetItem):
@@ -11,6 +18,14 @@ class TileTableWidgetItem(QTableWidgetItem):
         self.tile = tile
     def get_tile(self):
         return self.tile
+
+class BoardPieceWidgetItem(QTableWidgetItem):
+    def __init__(self, board_piece):
+        super().__init__()
+        self.board_piece = board_piece
+        self.setText("Print?")
+    def get_board_piece(self):
+        return self.board_piece
 
 class MainWindow(QMainWindow):
     def __init__(self, backend):
@@ -22,13 +37,17 @@ class MainWindow(QMainWindow):
         self.populate_families()
         self.populate_shapes()
         self.populate_ui_grid()
+        self.ui.board_piece_table_widget.cellClicked.connect(self.on_board_piece_table_click)
+
 
     def add_to_bp_list(self, board_piece):
         bptw = self.ui.board_piece_table_widget
+        tile_link_widget = BoardPieceWidgetItem(board_piece)
         bptw.setRowCount(bptw.rowCount() + 1)
         bptw.setItem(bptw.rowCount()-1, 0, QTableWidgetItem(board_piece.get_name()))
         bptw.setItem(bptw.rowCount()-1, 1, QTableWidgetItem(board_piece.get_apriltag_family().get_tag_family()))
         bptw.setItem(bptw.rowCount()-1, 2, QTableWidgetItem(str(board_piece.get_tag_num())))
+        bptw.setItem(bptw.rowCount()-1, 3, tile_link_widget)
 
 
     def on_create_board_piece(self):
@@ -86,6 +105,28 @@ class MainWindow(QMainWindow):
         bgtw.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         bgtw.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.make_cells_square(bgtw)
+
+    def on_board_piece_table_click(self, row, col):
+
+        if col == 3:  # assuming column 3 is the 'Print' button
+            item = self.ui.board_piece_table_widget.item(row, col)
+            if isinstance(item, BoardPieceWidgetItem):
+                board_piece = item.get_board_piece()
+                self.print_tag(board_piece)
+
+
+    def print_tag(self, board_piece):
+        tag_family_string = board_piece.get_apriltag_family().get_tag_family()
+
+        base_dir = config.base_family_dir
+        full_path = os.path.join(base_dir, tag_family_string)
+        tag_path = convert_to_apriltag_path(full_path, board_piece.get_apriltag_family(), board_piece.get_tag_num())
+        svg_path = png_to_svg(tag_path)
+        os.startfile(svg_path)  # Windows default printer action
+        time.sleep(2)
+        os.remove(svg_path)
+
+
 
 
 
