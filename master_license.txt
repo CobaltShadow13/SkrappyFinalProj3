@@ -3,14 +3,9 @@ Project License – Non-Commercial + MIT/BSD-Compatible Code
 Copyright (c) 2025 Benjamin Jardine
 
 This project contains code under multiple licenses. Each module carries its own license which is inherited by all subdirectories.
-See the individual module headers or LICENSE files for full details:
+See the individual module headers or LICENSE files for full details, if a module is not licensed it falls under the following:
 
-1. pupil_apriltags
-   - Includes the AprilTags library and any other third-party MIT/BSD code.
-   - You must comply with the original licenses for this code. See LICENSE-APRILTAG.txt or the respective files for details.
-   - This code **may be used commercially** under its original license.
-
-2. board_reader by Benjamin Jardine
+Code Written by Benjamin Jardine
    - Licensed under this Non-Commercial License (NC).
    - You may use, copy, modify, and distribute this code **solely for personal, educational, or research purposes**.
    - Commercial use, selling, or redistribution for profit is **prohibited** without explicit written and signed permission
