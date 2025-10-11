@@ -530,13 +530,11 @@ class PinholeCalibrator(CharucoCalibrator):
         print('Camera parameters for COLMAP:')
         print(f"OPENCV: {fx}, {fy}, {cx}, {cy}, {k1}, {k2}, {p1}, {p2}")
     
-            
-        
-
+'''
 if __name__ == '__main__':
-    
+
     print('Running calibration script')
-    
+
     ARUCO_DICT = cv2.aruco.DICT_5X5_100
     SQUARES_VERTICALLY = 12
     SQUARES_HORIZONTALLY = 9
@@ -545,13 +543,13 @@ if __name__ == '__main__':
     CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 
     instaCam = FisheyeCalibrator(
-        ARUCO_DICT, SQUARES_VERTICALLY, SQUARES_HORIZONTALLY, SQUARE_LENGTH, MARKER_LENGTH, 
+        ARUCO_DICT, SQUARES_VERTICALLY, SQUARES_HORIZONTALLY, SQUARE_LENGTH, MARKER_LENGTH,
         calibration_images_dir= os.path.join(CURRENT_PATH,'../.../data/calibration/data/'),
         raw_images_dir= os.path.join(CURRENT_PATH,'../../data/raw_images/descent_1')
         )
-    
+
     instaCam.calibrate()
     for name, image in instaCam.raw_images():
         instaCam.undistort_image(image, image_name = name,show_image=False)
+'''
 
-    

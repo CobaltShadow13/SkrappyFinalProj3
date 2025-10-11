@@ -5,7 +5,7 @@ import cv2
 import cv2.aruco
 import json
 from typing import Generator, Tuple, Optional
-from camera_calibration_library.src.calibration.calibrate import FisheyeCalibrator, PinholeCalibrator
+from backend.scripts.classes.local_opencv.camera_calibration_library.src.calibration.calibrate import FisheyeCalibrator, PinholeCalibrator
 
 ARUCO_DICT = cv2.aruco.DICT_4X4_50
 SQUARES_VERTICALLY = 5

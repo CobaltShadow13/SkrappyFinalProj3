@@ -23,7 +23,9 @@ class Backend(object):
     def get_families(self):
         return self.families
     def get_shapes(self):
-        return data.objects.shapes.shapes
+        return database.objects.shapes.shapes
+    def get_tags(self):
+        return self.board.grid
 #Setters
     def set_board(self, board):
         self.board = board

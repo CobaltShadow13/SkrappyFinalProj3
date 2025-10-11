@@ -40,8 +40,18 @@ class Grid(object):
     def set_filled_tiles(self, filled_tiles):
         self.filled_tiles = filled_tiles
 
+
 #Helper Functions
-    def update_grid(self, tags):
+    def update_grid(self, tags, board_piece_array):
+        new_tags = []
+        for piece in board_piece_array:
+            for tag in tags:
+                if piece.get_tag_num() == tag.get_local_detection().tag_id:
+                    new_tags.append(tag)
+                else:
+                    continue
+        tags = new_tags
+
         tile_map = self.get_tile_map()
         has_tile_array = []
         for current_tile in tile_map:
@@ -65,7 +75,6 @@ class Grid(object):
                         tags[tag].set_tile(current_tile)
                         has_tile_array.append(current_tile.get_tile_id())
         self.set_filled_tiles(has_tile_array)
-
 
 
 
