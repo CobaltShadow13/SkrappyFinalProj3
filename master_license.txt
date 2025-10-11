@@ -1,21 +1,24 @@
-Project License – Non-Commercial + MIT/BSD-Compatible Code
+Project License – Non-Commercial
 
 Copyright (c) 2025 Benjamin Jardine
 
-This project contains code under multiple licenses. Each module carries its own license which is inherited by all subdirectories.
-See the individual module headers or LICENSE files for full details, if a module is not licensed it falls under the following:
+This project may include code licensed under multiple licenses. Each module carries its own license, which applies to all of its subdirectories.
+Please refer to the headers or LICENSE files of individual modules for full details. Any module not explicitly licensed falls under the terms below.
 
-Code Written by Benjamin Jardine
-   - Licensed under this Non-Commercial License (NC).
-   - You may use, copy, modify, and distribute this code **solely for personal, educational, or research purposes**.
-   - Commercial use, selling, or redistribution for profit is **prohibited** without explicit written and signed permission
+1. License for Code Written by Benjamin Jardine
+All code authored by Benjamin Jardine is licensed under this Non-Commercial License (NC):
+  1.1 Permitted Uses:
+      - You may use, copy, modify, and distribute this code solely for personal, educational, or research purposes.
+  1.2 Prohibited Uses:
+      - Commercial use, sale, or redistribution of the code for profit is strictly prohibited without prior written permission from the copyright holder.
 
-Attribution
-- You must include this notice in all copies or substantial portions of the Software.
-- For MIT/BSD code, include the original license files and attribution as required by the original authors.
+2. Attribution
+  - This notice must be included in all copies or substantial portions of the Software.
+  - For code originating from MIT/BSD-licensed modules, you must include the original license files and provide attribution in accordance with the requirements of the original authors.
 
-**Disclaimer**
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-IN THE SOFTWARE.
+3. Disclaimer of Warranty
+
+THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, A
+RISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
