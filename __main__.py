@@ -15,7 +15,6 @@ from frontend.scripts.classes.user_interface.main_window_backend_interface impor
 
 def __main__():
     backend = Backend()
-    backend.camera.calibrate_camera()
     # User interface setup
     app = QApplication(sys.argv)
     window = MainWindow(backend)

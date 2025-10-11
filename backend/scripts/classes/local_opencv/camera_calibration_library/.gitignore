@@ -1,0 +1,7 @@
+scripts/data/calibration/images/
+scripts/data/calibration/camera_intrinsics/
+scripts/data/undistorted_images/
+scripts/data/virtual_cameras/
+scripts/data/raw_images/
+reconstruction/
+__pycache__/

@@ -6,14 +6,14 @@ def detect_board_settings(image_folder, candidate_boards):
     """
     Tries different dictionary + board size combinations to find one that produces ChArUco corners.
 
-    image_folder: folder containing calibration images
+    image_folder: folder containing calibration data
     candidate_boards: list of tuples (dictionary_name, squaresX, squaresY)
     """
     images = glob.glob(f"{image_folder}/*.jpg")
     if not images:
-        raise FileNotFoundError("No images found in folder.")
+        raise FileNotFoundError("No data found in folder.")
 
-    print(f"🔍 Found {len(images)} images for testing.")
+    print(f"🔍 Found {len(images)} data for testing.")
 
     for dict_name, squaresX, squaresY in candidate_boards:
         try:
@@ -27,7 +27,7 @@ def detect_board_settings(image_folder, candidate_boards):
             )
             print(f"\nTesting board: {dict_name}, size: {squaresX}x{squaresY}")
 
-            for fname in images[:5]:  # test on first 5 images
+            for fname in images[:5]:  # test on first 5 data
                 img = cv.imread(fname)
                 gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
                 corners, ids, _ = cv.aruco.detectMarkers(gray, aruco_dict)
