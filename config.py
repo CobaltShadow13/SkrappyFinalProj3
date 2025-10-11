@@ -1,6 +1,6 @@
-from backend.scripts.classes.board.grid.sets.Icon_File_Set_Class import IconFileSet
-from backend.scripts.utilities.general_utilities.conversions import inch_to_meters
-from backend.scripts.classes.local_opencv.LocalCameraClass import LocalCamera
+from src.board_reader.backend.board.grid.sets.Icon_File_Set_Class import IconFileSet
+from src.board_reader.backend.utils.conversions import inch_to_meters
+from src.board_reader.backend.local_opencv.LocalCameraClass import LocalCamera
 import cv2 as cv
 
 #Has been saved
@@ -8,7 +8,7 @@ save = False
 save_dir = None
 
 tag_family_strings = "tag16h5"
-camera_calibration_path = r"D:\SERAPH_AI\SkrappyFinalProj3\backend\scripts\classes\local_opencv\camera_calibration_library\scripts\data\calibration\camera_intrinsics\fisheye_calibration.json"
+camera_calibration_path = r"src/charuco_calibration\scripts\data\calibration\camera_intrinsics\fisheye_calibration.json"
 
 
 #Default Icons
@@ -31,6 +31,6 @@ default_tag_size_mm = 19.6 #mm (with padding)
 default_camera = LocalCamera(cv.VideoCapture(0))
 
 #Default Tag Family Directories
-base_family_dir = r"D:\SERAPH_AI\SkrappyFinalProj3\database\assets\apriltag-imgs-master"
+base_family_dir = r"src/board_reader/data\assets\apriltag-imgs-master"
 
 

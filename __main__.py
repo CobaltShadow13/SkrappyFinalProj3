@@ -1,16 +1,15 @@
 #Imports
     ## Classes
 import sys
-import keyboard
 from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QApplication
 
-from backend.BackendClass import Backend
+from src.board_reader.backend.BackendClass import Backend
 ##Helper Functions
 
-from backend.scripts.utilities.apriltag_utilities.capture_frame import capture_frame
-from database.objects.detectors import board_detector
-from frontend.scripts.classes.user_interface.main_window_backend_interface import MainWindow
+from src.board_reader.backend.local_opencv.utils.capture_frame import capture_frame
+from src.board_reader.data.objects.detectors import board_detector
+from src.board_reader.frontend.scripts.classes.user_interface.main_window_backend_interface import MainWindow
 
 
 def __main__():
