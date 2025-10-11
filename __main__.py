@@ -25,7 +25,7 @@ def __main__():
     timer.timeout.connect(lambda: backend.get_board().get_grid().update_grid(
         capture_frame(1, backend.get_camera(), board_detector)
     ))
-    timer.start(30000)  # every 1000 ms = 1 second
+    timer.start(1000)  # every 1000 ms = 1 second
 
     # Start the Qt event loop (blocks here, but timer keeps running)
     sys.exit(app.exec())

@@ -7,13 +7,14 @@ import os
 #https://calib.io/pages/camera-calibration-pattern-generator
 
 class LocalCamera(object):
-    def __init__(self, camera, fx = None, fy = None, cx = None, cy = None, dist = None):
+    def __init__(self, camera):
         self.camera = camera
-        self.fx = fx
-        self.fy = fy
-        self.cx = cx
-        self.cy = cy
-        self.dist = dist
+        self.fx = None
+        self.fy = None
+        self.cx = None
+        self.cy = None
+        self.dist = None
+        self.loadCalibration()
 
     ### Getters and Setters ###
     def getCamera(self):
@@ -67,8 +68,10 @@ class LocalCamera(object):
         newcameramtx, roi = cv.getOptimalNewCameraMatrix(mtx, self.dist, (w, h), 1, (w, h))
         return cv.undistort(img, mtx, self.dist, None, newcameramtx)
 
-    def loadCalibration(self, filename):
+    def loadCalibration(self):
         # Load JSON calibration
+        camera_calibration_path = r"D:\SERAPH_AI\SkrappyFinalProj3\backend\scripts\classes\local_opencv\camera_calibration_library\scripts\data\calibration\camera_intrinsics\fisheye_calibration.json"
+        filename = camera_calibration_path
         with open(filename, 'r') as f:
             data = json.load(f)
 

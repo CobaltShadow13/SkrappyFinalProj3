@@ -42,15 +42,8 @@ class Grid(object):
 
 
 #Helper Functions
-    def update_grid(self, tags, board_piece_array):
-        new_tags = []
-        for piece in board_piece_array:
-            for tag in tags:
-                if piece.get_tag_num() == tag.get_local_detection().tag_id:
-                    new_tags.append(tag)
-                else:
-                    continue
-        tags = new_tags
+    def update_grid(self, tags):
+
 
         tile_map = self.get_tile_map()
         has_tile_array = []

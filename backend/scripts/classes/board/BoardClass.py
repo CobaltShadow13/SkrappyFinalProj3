@@ -19,7 +19,7 @@ class Board(object):
 
 #Helper Functions
     def update_board(self, apriltag_array):
-        self.get_grid().update_grid(apriltag_array, self.get_board_piece_array())
+        self.get_grid().update_grid(apriltag_array())
 
 
 
