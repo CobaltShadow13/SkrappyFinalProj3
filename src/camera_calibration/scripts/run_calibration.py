@@ -1,12 +1,12 @@
 import os
 import cv2.aruco
-from src.charuco_calibration.src.calibration.calibrate import FisheyeCalibrator, PinholeCalibrator
+from src.camera_calibration.src.calibration.calibrate import FisheyeCalibrator, PinholeCalibrator
 
-ARUCO_DICT = cv2.aruco.DICT_4X4_50
-SQUARES_VERTICALLY = 5
-SQUARES_HORIZONTALLY = 5
-SQUARE_LENGTH = 0.0254
-MARKER_LENGTH = 0.019
+ARUCO_DICT = cv2.aruco.DICT_4X4_100
+SQUARES_VERTICALLY = 6
+SQUARES_HORIZONTALLY = 9
+SQUARE_LENGTH = 0.03
+MARKER_LENGTH = 0.022
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 instaCamFisheye = FisheyeCalibrator(

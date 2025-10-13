@@ -105,6 +105,26 @@ class MainWindow(QMainWindow):
         bgtw.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         self.make_cells_square(bgtw)
 
+    def refresh_ui_grid(self):
+
+        bgtw = self.ui.board_grid_table_widget
+        grid = self.backend.get_board().get_grid()
+
+        for tile in grid.get_tile_map():
+            tile_id = tile.get_tile_id()
+            row, col = self.transfer_tile_id_to_table_widget_coords(tile_id)
+
+            # If the cell exists, update its value; otherwise create it
+            item = bgtw.item(row, col)
+            if item is None:
+                tile_widget = TileTableWidgetItem(tile)
+                bgtw.setItem(row, col, tile_widget)
+            else:
+                item.setText(f"{int(tile.get_has_tag())}")
+                item.tile = tile  # update reference in case it changed
+
+        self.make_cells_square(bgtw)
+
     def on_board_piece_table_click(self, row, col):
 
         if col == 3:  # assuming column 3 is the 'Print' button

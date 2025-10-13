@@ -8,7 +8,7 @@ save = False
 save_dir = None
 
 tag_family_strings = "tag16h5"
-camera_calibration_path = r"src/charuco_calibration\scripts\data\calibration\camera_intrinsics\fisheye_calibration.json"
+camera_calibration_path = r"src\camera_calibration\scripts\data\calibration\camera_intrinsics\fisheye_calibration.json"
 
 
 #Default Icons

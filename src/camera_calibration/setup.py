@@ -17,7 +17,7 @@ setup(
     url='https://github.com/jamiemilsom/fisheye_3d_reconstruction',
     license='MIT',
     packages=find_packages(where='modules'),
-    package_dir={'': 'modules'},
+    package_dir={'': 'src'},
     include_package_data=True,
     install_requires=read_requirements('requirements.txt'),
     extras_require={

@@ -46,6 +46,11 @@ class Grid(object):
 
 
         tile_map = self.get_tile_map()
+        for tile in tile_map:
+            tile.set_has_tag(False)
+
+
+
         has_tile_array = []
         for current_tile in tile_map:
                 for tag in tags:
@@ -54,10 +59,10 @@ class Grid(object):
                     in_y_low = False
                     in_y_high = False
 
-                    if tag.get_x() < current_tile.get_boundary_set().get_x_high():
-                        if tag.get_y() < current_tile.get_boundary_set().get_y_high():
-                            if tag.get_y() >= current_tile.get_boundary_set().get_y_low():
-                                if tag.get_x() >= current_tile.get_boundary_set().get_x_low():
+                    if tag.get_x() < current_tile.get_boundary_set().get_x_high() * 1000: #conversion to mm
+                        if tag.get_y() < current_tile.get_boundary_set().get_y_high() * 1000: #conversion to mm
+                            if tag.get_y() >= current_tile.get_boundary_set().get_y_low() * 1000: #conversion to mm
+                                if tag.get_x() >= current_tile.get_boundary_set().get_x_low() * 1000: #conversion to mm
                                     in_x_low = True
                                     in_x_high = True
                                     in_y_low = True
@@ -65,8 +70,11 @@ class Grid(object):
 
                     if in_x_low and in_x_high and in_y_low and in_y_high:
                         current_tile.set_has_tag(True)
-                        tags[tag].set_tile(current_tile)
+                        tag.set_tile(current_tile)
                         has_tile_array.append(current_tile.get_tile_id())
+                    else:
+                        current_tile.set_has_tag(False)
+
         self.set_filled_tiles(has_tile_array)
 
 

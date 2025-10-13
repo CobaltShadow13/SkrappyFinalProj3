@@ -4,4 +4,5 @@
 #scripts/data/virtual_cameras/
 #scripts/data/raw_images/
 #reconstruction/
+venv310
 __pycache__/
