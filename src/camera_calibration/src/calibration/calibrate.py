@@ -162,7 +162,7 @@ class CharucoCalibrator:
         # Step 1: Detect ArUco markers
         marker_ids, marker_corners = self.detect_aruco_markers(image, grayscale, verbose=verbose)
 
-        if marker_ids is not None and len(marker_ids) > 0:
+        if marker_ids is not None and len(marker_ids) > 4:
             # Step 2: Try ChArUco interpolation
             charuco_retval, charuco_corners, charuco_ids = cv2.aruco.interpolateCornersCharuco(
                 marker_corners, marker_ids, image, self.board
@@ -334,8 +334,29 @@ class FisheyeCalibrator(CharucoCalibrator):
         self.D = np.zeros((4, 1))
         
         print('Number of data used for calibration: ', count)
+        # Filter out frames with too few corners
+        filtered_objpoints = []
+        filtered_imgpoints = []
 
-        retval, self.K, self.D, rvecs, tvecs = cv2.fisheye.calibrate(object_points,image_points,image.shape[:2],self.K,self.D)
+        for objp, imgp in zip(object_points, image_points):
+            if imgp is not None and len(imgp) >= 10 and len(objp) == len(imgp):
+                filtered_objpoints.append(objp)
+                filtered_imgpoints.append(imgp)
+            else:
+                print(f"⚠️ Skipping invalid frame: {len(imgp) if imgp is not None else 0} corners")
+
+        print(f"Using {len(filtered_objpoints)} valid frames out of {len(object_points)}")
+
+        if len(filtered_objpoints) < 5:
+            raise ValueError("Not enough valid frames for calibration (need at least 5).")
+
+        retval, self.K, self.D, rvecs, tvecs = cv2.fisheye.calibrate(
+            filtered_objpoints,
+            filtered_imgpoints,
+            image.shape[:2],
+            self.K,
+            self.D
+        )
 
         print('K: ', self.K)
         print('Distortion coefficients: ', self.D)
