@@ -1,15 +1,15 @@
 #Imports
 
-from src.board_reader.backend.board.grid.utils.tilemap_utilities import create_tile_map
+from src.board_reader.backend.board.grid.utils.tilemap_utilities import create_tile_map ##import the create tile map helper function.
 
 
 #Grid Class
 class Grid(object):
 #Constructor
-    def __init__(self, width, height, x_meter_coord, y_meter_coord, tile_size):
-        self.width = width
-        self.height = height
-        self.tileMap = create_tile_map(width, height, x_meter_coord, y_meter_coord, tile_size)
+    def __init__(self, width, height, x_meter_coord, y_meter_coord, tile_size): #Could afford to make the variable naming less confusing for this class.
+        self.width = width #Takes in a width in tiles
+        self.height = height #Takes in a width in tiles
+        self.tileMap = create_tile_map(width, height, x_meter_coord, y_meter_coord, tile_size) #utilizing the inputted width, height, and x and y meter lengths
         self.x_meter_coord = x_meter_coord
         self.y_meter_coord = y_meter_coord
         self.filled_tiles = []
@@ -59,10 +59,10 @@ class Grid(object):
                     in_y_low = False
                     in_y_high = False
 
-                    if tag.get_x() < current_tile.get_boundary_set().get_x_high() * 1000: #conversion to mm
-                        if tag.get_y() < current_tile.get_boundary_set().get_y_high() * 1000: #conversion to mm
-                            if tag.get_y() >= current_tile.get_boundary_set().get_y_low() * 1000: #conversion to mm
-                                if tag.get_x() >= current_tile.get_boundary_set().get_x_low() * 1000: #conversion to mm
+                    if tag.get_x() < current_tile.get_boundary_set().get_x_high() * 1000: #if the local detections x val is less than the right x boundary converted to mm
+                        if tag.get_y() < current_tile.get_boundary_set().get_y_high() * 1000: #if the local detections y val is less than the top y boundary converted to mm
+                            if tag.get_y() >= current_tile.get_boundary_set().get_y_low() * 1000: #if the local detections y val is greater than or equal to the bottom y boundary converted to mm
+                                if tag.get_x() >= current_tile.get_boundary_set().get_x_low() * 1000: #if the local detections x val is greater than the left x boundary converted to mm
                                     in_x_low = True
                                     in_x_high = True
                                     in_y_low = True
