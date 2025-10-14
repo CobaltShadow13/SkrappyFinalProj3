@@ -2,6 +2,8 @@ import os
 import time
 
 from PyQt6.QtWidgets import QHeaderView
+from PySide6 import QtGui
+from PySide6.QtGui import Qt
 from PySide6.QtWidgets import QMainWindow, QTableWidgetItem, QHeaderView
 
 import config
@@ -23,6 +25,7 @@ class BoardPieceWidgetItem(QTableWidgetItem):
         super().__init__()
         self.board_piece = board_piece
         self.setText("Print?")
+        self.setBackground(QtGui.QColor(0,0,0))
     def get_board_piece(self):
         return self.board_piece
 
@@ -122,6 +125,13 @@ class MainWindow(QMainWindow):
             else:
                 item.setText(f"{int(tile.get_has_tag())}")
                 item.tile = tile  # update reference in case it changed
+
+            if tile.get_has_tag():
+                print(f"changing color for({row}, {col})")
+                item.setBackground(QtGui.QColor(255, 255, 255))
+            else:
+                item.setBackground(QtGui.QColor(0, 0, 0))
+
 
         self.make_cells_square(bgtw)
 
