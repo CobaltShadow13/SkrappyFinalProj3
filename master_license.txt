@@ -11,6 +11,8 @@ All code authored by Benjamin Jardine is licensed under this Non-Commercial Lice
       - You may use, copy, modify, and distribute this code solely for personal, educational, or research purposes.
   1.2 Prohibited Uses:
       - Commercial use, sale, or redistribution of the code for profit is strictly prohibited without prior written permission from the copyright holder.
+  1.3 Special Cases:
+      - Members of Team Skrappy may use this software for profit if they so desire.
 
 2. Attribution
   - This notice must be included in all copies or substantial portions of the Software.
