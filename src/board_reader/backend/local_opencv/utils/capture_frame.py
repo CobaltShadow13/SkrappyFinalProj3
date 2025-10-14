@@ -21,13 +21,15 @@ from src.board_reader.backend.local_apriltags.LocalDetectionClass import LocalDe
 def capture_frame(seconds, main_camera, detector):
     cam = main_camera.getCamera()
 
-    frame_width = int(cam.get(cv.CAP_PROP_FRAME_WIDTH))
-    frame_height = int(cam.get(cv.CAP_PROP_FRAME_HEIGHT))
-    ret, rawFrame = cam.read()
+    frame_width = int(cam.get(cv.CAP_PROP_FRAME_WIDTH)) #Unused for now
+    frame_height = int(cam.get(cv.CAP_PROP_FRAME_HEIGHT)) #Unused for now
+
+
+    ret, rawFrame = cam.read() #utilizing the camera 'ret' take a picture and assign it to rawFrame
 
     ##good practice error check, maybe my camera is off
     if not ret:
-        print("Failed process, Exiting Now")
+        print("Failed process, Exiting Now. Camera is not available.")
         return []
 
     ##Fix undistort raw image
@@ -35,7 +37,7 @@ def capture_frame(seconds, main_camera, detector):
 
     # make the image grayscale for library processing
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-    ##error checking for the camera
+    #If the camera calibration exists use it, otherwise assign the width over 2 (this is a terrible error check btw)
     h, w = gray.shape[:2]
     fx = main_camera.getfx() if main_camera.getfx() != 0 else w
     fy = main_camera.getfy() if main_camera.getfy() != 0 else w
@@ -45,9 +47,9 @@ def capture_frame(seconds, main_camera, detector):
     # detect tags in the grayscale image
     detections = detector.detect(gray, True, (fx,fy,cx,cy), config.default_tag_size_mm)
 
-    tags = []
+    tags = [] #Array of LocalDetections that will be assigned below
 
-#loop that takes all the tags detected in the grayscale frame and will later be used to return frame data to the map
+#loop that takes all the tags detected in the grayscale frame and draws them with error checking to the terminal. Remove this when porting
     for tag in detections:
         x, y, z = tag.pose_t.flatten()
         print(tag.pose_t.flatten())
@@ -63,7 +65,7 @@ def capture_frame(seconds, main_camera, detector):
     # display the image for debugging
     #cv.imshow("AprilTag Detection", gray)
 
-    time.sleep(seconds)
+    time.sleep(seconds) ##Delay call before returning (remove this for something faster
     # cleanup
     #cv.destroyAllWindows()
 

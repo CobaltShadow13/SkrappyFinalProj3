@@ -1,3 +1,5 @@
+#These hold the icon paths per tile.
+
 class IconFileSet(object):
 #Constructor
     def __init__(self, wall_icon, center_icon, door_icon, window_border_icon):

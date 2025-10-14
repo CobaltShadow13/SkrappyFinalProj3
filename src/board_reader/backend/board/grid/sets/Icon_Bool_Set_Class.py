@@ -1,6 +1,5 @@
-#Icon Bool Set Class
-
-
+#Icon Bool Set Class holds the 3 different boundary sets for borders, doors, and windows, as well as the center icon
+#This references whether the icon is turned on based the shape of the tag.
 class IconBoolSet(object):
 #Constructor
     def __init__(self, border_bool_set, door_bool_set, windows_bool_set, center_icon_bool):

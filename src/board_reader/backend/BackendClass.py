@@ -4,32 +4,32 @@ from src.board_reader.backend.board.grid.utils.auto_sense_dimensions import auto
 from src.board_reader.backend.board.utils.board_utilities import create_board
 from src.board_reader.backend.local_apriltags.utils.local_family_utilities import initialize_families
 
-class Backend(object):
+class Backend(object): ##Main backend class that will be passed into the front end. Only needs initialization in the main.
     def __init__(self):
-        tile_size = config.default_tile_size_in
-        width, height = auto_sense_dimensions()
+        tile_size = config.default_tile_size_in #Get the tile size
+        width, height = auto_sense_dimensions() #Currently this just returns the width and height from config, fix it later
 
-        self.board = create_board(width, height, tile_size)
-        self.camera = config.default_camera
+        self.board = create_board(width, height, tile_size) #The class has a 'board' object where the virtual information for the game board is stored
+        self.camera = config.default_camera #default camera from config. Assign it to the backend to allow access in the frontend.
         if not config.save:
-            self.families = initialize_families()
+            self.families = initialize_families() ##Initialize the apriltag families from data. Can add custom families if you want to in there.
         else:
             self.families = initialize_families() ##Change to get the save later
 #Getters
     def get_board(self):
-        return self.board
+        return self.board #returns the board object
     def get_camera(self):
-        return self.camera
+        return self.camera #returns the LocalCamera object
     def get_families(self):
-        return self.families
+        return self.families #returns the array of LocalFamily objects
     def get_shapes(self):
-        return src.board_reader.data.objects.shapes.shapes
+        return src.board_reader.data.objects.shapes.shapes #returns the defined objects
     def get_tags(self):
-        return self.board.grid
-#Setters
+        return self.board.grid.filled_tiles #Get the tile objects that have a qr code in them.
+#Setters (these may not be nessescary check if you can remove them for optimization)
     def set_board(self, board):
-        self.board = board
+        self.board = board #set the board object
     def set_camera(self, camera):
-        self.camera = camera
+        self.camera = camera #set the camera object
     def set_families(self, families):
-        self.families = families
+        self.families = families #set the families array

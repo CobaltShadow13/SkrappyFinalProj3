@@ -24,13 +24,14 @@ product_height = 24.0  #Tiles
 prototype_width = 6.0  #Tiles
 prototype_height = 6.0  #Tiles
 
-default_tile_size_in = inch_to_meters(1)
+default_tile_size_in = inch_to_meters(1) ##Rename this to tile size in meters
 default_tile_size_mm = inch_to_meters(1) * 1000
 default_tag_size_mm = 19.6 #mm (with padding)
 
+#Main camera object, change this to 1,2,3 etc for different cameras plugged into the computer.
 default_camera = LocalCamera(cv.VideoCapture(0))
 
 #Default Tag Family Directories
-base_family_dir = r"src/board_reader/data\assets\apriltag-imgs-master"
+base_family_dir = r"src\board_reader\data\assets\apriltag-imgs-master"
 
 

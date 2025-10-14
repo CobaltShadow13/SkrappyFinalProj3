@@ -1,4 +1,4 @@
-#Icon Display Set Class
+#Icon Display Set Class holds the icon bool set and the files for each tile.
 class IconDisplaySet(object):
 #Constructor
     def __init__(self, icon_bool_set, icon_file_set):
