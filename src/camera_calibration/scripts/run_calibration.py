@@ -18,11 +18,17 @@ instaCamFisheye = FisheyeCalibrator(
 instaCamPinhole = PinholeCalibrator(
     ARUCO_DICT, SQUARES_VERTICALLY, SQUARES_HORIZONTALLY, SQUARE_LENGTH, MARKER_LENGTH, 
     calibration_images_dir= os.path.join(CURRENT_PATH,'data\\calibration\\images\\'),
-    raw_images_dir= os.path.join(CURRENT_PATH,'../data/raw_images/descent_1')
+    raw_images_dir= os.path.join(CURRENT_PATH,'..\\data\\raw_images\\descent_1')
     )
 
-instaCamFisheye.calibrate()
-#instaCamPinhole.calibrate()
+#instaCamFisheye.calibrate()
+instaCamPinhole.calibrate()
 
-instaCamFisheye.export_camera_params_colmap()
-#instaCamPinhole.export_camera_params_colmap()
+#instaCamFisheye.export_camera_params_colmap()
+instaCamPinhole.export_camera_params_colmap()
+
+
+#Test Undistort
+instaCamPinhole.load_camera_parameters()
+for image_name, image in instaCamPinhole.raw_images.items():
+    instaCamPinhole.undistort_image(image, image_name, calibration_filename = 'pinhole_calibration.json', balance = 1, show_image = False, save_image = True)

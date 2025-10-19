@@ -339,7 +339,7 @@ class FisheyeCalibrator(CharucoCalibrator):
         filtered_imgpoints = []
 
         for objp, imgp in zip(object_points, image_points):
-            if imgp is not None and len(imgp) >= 10 and len(objp) == len(imgp):
+            if imgp is not None and 20 <= len(imgp) == len(objp):
                 filtered_objpoints.append(objp)
                 filtered_imgpoints.append(imgp)
             else:
@@ -473,16 +473,21 @@ class PinholeCalibrator(CharucoCalibrator):
         
         self.K = np.zeros((3, 3))
         self.D = np.zeros((5, 1))
-        retval, self.K, self.D, rvecs, tvecs = cv2.aruco.calibrateCameraCharuco(all_charuco_corners, all_charuco_ids, self.board, image.shape[:2], None, None)
+        image_size = (image.shape[1], image.shape[0])
+        retval, self.K, self.D, rvecs, tvecs = cv2.aruco.calibrateCameraCharuco(all_charuco_corners, all_charuco_ids, self.board, image_size, None, None)
                     
         print('K: ', self.K)
         print('Distortion coefficients: ', self.D)
         
         print('Number of data used for calibration: ', len(all_charuco_corners))
-        output_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../../data/calibration/camera_intrinsics/{calibration_filename}')
+        output_path = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+            'scripts', 'data', 'calibration', 'camera_intrinsics', f'{calibration_filename}'
+        )
+
         self.save_camera_parameters(output_path)
-        print(f"Camera calibration data saved to {output_path}")  
-        
+        print(f"Camera calibration data saved to {output_path}")
+
         
     def undistort_image(self, image: np.ndarray, image_name:str = None, calibration_filename = 'pinhole_calibration.json', balance = 1, show_image = True, save_image = True, output_path: str = None,window_size = (480,480)) -> np.ndarray:
         """
@@ -534,10 +539,12 @@ class PinholeCalibrator(CharucoCalibrator):
         """
         Exports camera parameters in COLMAP format.
         """
-        
+
         if calibration_path is None:
-            calibration_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../../data/calibration/camera_intrinsics/pinhole_calibration.json')
-        
+            calibration_path = os.path.join(
+                os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+                'scripts', 'data', 'calibration', 'camera_intrinsics', 'pinhole_calibration.json'
+            )
         self.load_camera_parameters(calibration_path)
         fx = self.K[0, 0]
         fy = self.K[1, 1]

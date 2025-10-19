@@ -5,13 +5,13 @@ import cv2
 import cv2.aruco
 import json
 from typing import Generator, Tuple, Optional
-from camera_calibration_library.src.calibration import FisheyeCalibrator, PinholeCalibrator
+from src.camera_calibration.src.calibration import FisheyeCalibrator, PinholeCalibrator
 
-ARUCO_DICT = cv2.aruco.DICT_5X5_100
-SQUARES_VERTICALLY = 12
+ARUCO_DICT = cv2.aruco.DICT_4X4_100
+SQUARES_VERTICALLY = 6
 SQUARES_HORIZONTALLY = 9
-SQUARE_LENGTH = 0.06
-MARKER_LENGTH = 0.045
+SQUARE_LENGTH = 0.03
+MARKER_LENGTH = 0.022
 CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 instaCamFisheye = FisheyeCalibrator(
@@ -26,12 +26,13 @@ instaCamPinhole = PinholeCalibrator(
     raw_images_dir= os.path.join(CURRENT_PATH,'../data/raw_images/descent_1')
     )
 
-instaCamFisheye.load_camera_parameters(file_path=os.path.join(CURRENT_PATH,'../data/calibration/camera_intrinsics/fisheye_calibration.json'))
+#instaCamFisheye.load_camera_parameters(file_path=os.path.join(CURRENT_PATH,'..','..','data','calibration','camera_intrinsics','fisheye_calibration.json'))
 instaCamPinhole.load_camera_parameters(file_path=os.path.join(CURRENT_PATH,'../data/calibration/camera_intrinsics/pinhole_calibration.json'))
 
-
+'''
 for image_name, image in instaCamFisheye.raw_images.items():
     instaCamFisheye.undistort_image(image, image_name, calibration_filename = 'fisheye_calibration.json', balance = 1, show_image = False, save_image = True)
-    
+'''
+
 for image_name, image in instaCamPinhole.raw_images.items():
     instaCamPinhole.undistort_image(image, image_name, calibration_filename = 'pinhole_calibration.json', balance = 1, show_image = False, save_image = True)
