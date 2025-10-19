@@ -1,4 +1,4 @@
-#Board Piece Class
+#Btoard Piece Class
 
 
 class BoardPiece(object):

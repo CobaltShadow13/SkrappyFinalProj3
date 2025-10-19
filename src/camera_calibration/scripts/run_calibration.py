@@ -26,9 +26,3 @@ instaCamPinhole.calibrate()
 
 #instaCamFisheye.export_camera_params_colmap()
 instaCamPinhole.export_camera_params_colmap()
-
-
-#Test Undistort
-instaCamPinhole.load_camera_parameters()
-for image_name, image in instaCamPinhole.raw_images.items():
-    instaCamPinhole.undistort_image(image, image_name, calibration_filename = 'pinhole_calibration.json', balance = 1, show_image = False, save_image = True)

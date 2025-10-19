@@ -42,14 +42,20 @@ class Grid(object):
 
 
 #Helper Functions
-    def update_grid(self, tags):
 
 
+    def update_grid(self, tags, board_piece_array):
+        new_tags = []
+        #Cull the list of tags based off of the player inputted board pieces
+        for tag in tags:
+            for board_piece in board_piece_array:
+                if tag.get_local_detection().tag_id == board_piece.get_tag_num() & tag.get_local_detection().tag_image == board_piece.get_local_detection().tag_family == board_piece.get_apriltag_family().get_tag_family():
+                    new_tags.append(tag)
+        tags = new_tags
+        #Reset tilemap for new detections
         tile_map = self.get_tile_map()
         for tile in tile_map:
             tile.set_has_tag(False)
-
-
 
         has_tile_array = []
         for current_tile in tile_map:
@@ -74,6 +80,8 @@ class Grid(object):
                         has_tile_array.append(current_tile.get_tile_id())
                     else:
                         current_tile.set_has_tag(False)
+
+
 
         self.set_filled_tiles(has_tile_array)
 

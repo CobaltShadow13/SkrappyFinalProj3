@@ -20,7 +20,7 @@ def __main__():
 
     def update_and_refresh():
         frame = capture_frame(1, backend.get_camera(), board_detector) #Frame is an array of tags that is returned from the apriltag detection
-        backend.get_board().get_grid().update_grid(frame) #run the update grid function on grid using the above array of tags 'Frame'
+        backend.get_board().get_grid().update_grid(frame, backend.get_board().get_board_piece_array()) #run the update grid function on grid using the above array of tags 'Frame'
         window.refresh_ui_grid()  # <-- update UI after backend changes
 
 

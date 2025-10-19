@@ -6,6 +6,8 @@ from src.board_reader.backend.board.grid.sets.BoundarySetClass import BoundarySe
 from src.board_reader.backend.board.grid.sets.Icon_Bool_Set_Class import IconBoolSet
 import config
 
+
+
 def set_tile_map(tile_map, width, height):#Sets various functions of the tilemap
     xTileCoordOffset = width / 2
     yTileCoordOffset = height / 2

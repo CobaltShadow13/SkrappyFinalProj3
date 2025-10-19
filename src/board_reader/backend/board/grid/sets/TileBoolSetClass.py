@@ -1,12 +1,13 @@
 #This tile bool set is a class telling us whether something is true on the borders of the tile.
 
 class TileBoolSet(object):
+#Constructor
     def __init__(self, north, south, east, west): ##Make this into a tuple for optimization
         self.north = north
         self.south = south
         self.east = east
         self.west = west
-    # Getters
+#Getters
     def get_north(self):
         return self.north
     def get_south(self):
@@ -15,7 +16,7 @@ class TileBoolSet(object):
         return self.east
     def get_west(self):
         return self.west
-    # Setters
+#Setters
     def set_north(self, north):
         self.north = north
     def set_south(self, south):
