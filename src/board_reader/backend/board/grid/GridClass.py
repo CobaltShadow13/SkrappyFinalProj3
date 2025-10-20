@@ -42,14 +42,18 @@ class Grid(object):
 
 
 #Helper Functions
+    def draw_shapes(self, board_piece_array):
+        i = 0
+        for tile in self.get_filled_tiles():
+            tile_shape = board_piece_array[i].get_shape()
 
 
     def update_grid(self, tags, board_piece_array):
         new_tags = []
-        #Cull the list of tags based off of the player inputted board pieces
+        #Cull the list of tags based off of the player inputted board pieces, re orders tags in the order of board pieces
         for tag in tags:
             for board_piece in board_piece_array:
-                if tag.get_local_detection().tag_id == board_piece.get_tag_num() & tag.get_local_detection().tag_image == board_piece.get_local_detection().tag_family == board_piece.get_apriltag_family().get_tag_family():
+                if tag.get_local_detection().tag_id == board_piece.get_tag_num() and tag.get_local_detection().tag_family.decode("utf-8") == board_piece.get_apriltag_family().get_tag_family():
                     new_tags.append(tag)
         tags = new_tags
         #Reset tilemap for new detections

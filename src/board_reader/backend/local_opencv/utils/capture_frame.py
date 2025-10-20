@@ -63,11 +63,11 @@ def capture_frame(seconds, main_camera, detector):
 
 
     # display the image for debugging
-    #cv.imshow("AprilTag Detection", gray)
+    cv.imshow("AprilTag Detection", gray)
 
-    time.sleep(seconds) ##Delay call before returning (remove this for something faster
+    #time.sleep(30) ##Delay call before returning (remove this for something faster
     # cleanup
-    #cv.destroyAllWindows()
+
 
     return tags
 

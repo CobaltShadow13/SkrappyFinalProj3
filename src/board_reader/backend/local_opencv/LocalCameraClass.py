@@ -4,6 +4,14 @@ import cv2 as cv
 import numpy as np
 import glob
 import os
+
+#Hard coded values for tuning the calibration for prototyping purposes
+fx_multiplier = 3.5
+fy_multiplier = 1
+cx_multiplier = 1
+cy_multiplier = 1
+
+
 #https://calib.io/pages/camera-calibration-pattern-generator
 
 class LocalCamera(object):
@@ -79,8 +87,8 @@ class LocalCamera(object):
         dist = np.array(data["D"])
 
         # Set parameters
-        self.setfx(mtx[0, 0])
-        self.setfy(mtx[1, 1])
-        self.setcx(mtx[0, 2])
-        self.setcy(mtx[1, 2])
+        self.setfx(mtx[0, 0] * fx_multiplier)
+        self.setfy(mtx[1, 1] * fy_multiplier)
+        self.setcx(mtx[0, 2] * cx_multiplier)
+        self.setcy(mtx[1, 2] * cy_multiplier)
         self.setdist(dist)

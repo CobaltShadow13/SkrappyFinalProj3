@@ -18,8 +18,9 @@ default_center_icon = "default_center.png"
 default_window_border_icon = "default_window.png"
 defaultIconFileSet = IconFileSet(default_wall_icon, default_center_icon, default_door_icon, default_window_border_icon)
 
-product_width = 24.0  #Tiles
-product_height = 24.0  #Tiles
+product_width = 6.0  #Tiles
+product_height = 6.0  #Tiles
+
 
 prototype_width = 6.0  #Tiles
 prototype_height = 6.0  #Tiles
