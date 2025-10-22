@@ -33,16 +33,17 @@ def capture_frame(seconds, main_camera, detector):
         return []
 
     ##Fix undistort raw image
-    frame = rawFrame
+
+    frame = main_camera.undistortImage(rawFrame)
 
     # make the image grayscale for library processing
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     #If the camera calibration exists use it, otherwise assign the width over 2 (this is a terrible error check btw)
     h, w = gray.shape[:2]
-    fx = main_camera.getfx() if main_camera.getfx() != 0 else w
-    fy = main_camera.getfy() if main_camera.getfy() != 0 else w
-    cx = main_camera.getcx() if main_camera.getcx() != 0 else w / 2
-    cy = main_camera.getcy() if main_camera.getcy() != 0 else h / 2
+    fx = main_camera.getfx()
+    fy = main_camera.getfy()
+    cx = main_camera.getcx()
+    cy = main_camera.getcy()
 
     # detect tags in the grayscale image
     detections = detector.detect(gray, True, (fx,fy,cx,cy), config.default_tag_size_mm)
@@ -67,6 +68,7 @@ def capture_frame(seconds, main_camera, detector):
 
     #time.sleep(30) ##Delay call before returning (remove this for something faster
     # cleanup
+    cv.waitKey(1)
 
 
     return tags

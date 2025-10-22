@@ -1,3 +1,6 @@
+import config
+
+
 class Tile:
 #Constructor
     def __init__(self, size:float, x_tile_coord, y_tile_coord, tile_id, boundary_set, icon_display_set, x_meter_coord: float, y_meter_coord: float):
@@ -33,6 +36,8 @@ class Tile:
         return self.boundary_set
     def get_icon_display_set(self):
         return self.icon_display_set
+    def get_pixel_boundary_set(self):
+        return self.pixel_boundary_set
 #Setters
     def set_size(self, size):
         self.size = size
@@ -51,6 +56,8 @@ class Tile:
         self.tile_id = tileID
     def set_boundary_set(self, boundary_set):
         self.boundary_set = boundary_set
+    def set_pixel_boundary_set(self, pixel_boundary_set):
+        self.pixel_boundary_set = pixel_boundary_set
     def set_icon_display_set(self, icon_display_set):
         self.icon_display_set = icon_display_set
     def set_meter_coordinates(self, x_tile_coord, y_tile_coord): #sets the meter coordinates by multiplying the
@@ -70,4 +77,3 @@ class Tile:
         else:
             self.get_boundary_set().set_y_low(self.get_y_meter_coord())
             self.get_boundary_set().set_y_high(self.get_y_meter_coord() + self.get_size())
-

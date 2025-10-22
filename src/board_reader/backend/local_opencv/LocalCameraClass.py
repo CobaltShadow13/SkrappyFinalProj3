@@ -6,10 +6,10 @@ import glob
 import os
 
 #Hard coded values for tuning the calibration for prototyping purposes
-fx_multiplier = 3.5
-fy_multiplier = 1
-cx_multiplier = 1
-cy_multiplier = 1
+fx_multiplier = 1.0
+fy_multiplier = 1.0
+cx_multiplier = 1.0
+cy_multiplier = 1.0
 
 
 #https://calib.io/pages/camera-calibration-pattern-generator

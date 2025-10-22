@@ -15,7 +15,8 @@ from src.board_reader.frontend.scripts.classes.user_interface.main_window_class 
 class TileTableWidgetItem(QTableWidgetItem):
     def __init__(self, tile):
         super().__init__()
-        self.setText(f"{int(tile.get_has_tag())}")
+        #self.setText(f"{int(tile.get_has_tag())}")
+        self.setText(f"{tile.get_x_meter_coord(), tile.get_y_meter_coord()}")
         self.tile = tile
     def get_tile(self):
         return self.tile
