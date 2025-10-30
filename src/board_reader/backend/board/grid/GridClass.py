@@ -1,5 +1,5 @@
 #Imports
-
+from config import product_width
 from src.board_reader.backend.board.grid.utils.tilemap_utilities import create_tile_map ##import the create tile map helper function.
 
 
@@ -62,8 +62,9 @@ class Grid(object):
             tile.set_has_tag(False)
 
         has_tile_array = []
-        for current_tile in tile_map:
-                for tag in tags:
+        for tag in tags:
+                for current_tile in tile_map:
+
                     in_x_low = False
                     in_x_high = False
                     in_y_low = False
@@ -79,14 +80,17 @@ class Grid(object):
                                     in_y_high = True
 
                     if in_x_low and in_x_high and in_y_low and in_y_high:
+                        # Tag is inside this tile
                         current_tile.set_has_tag(True)
                         tag.set_tile(current_tile)
+                        current_tile.set_current_tag(tag)
                         has_tile_array.append(current_tile.get_tile_id())
-                    else:
-                        current_tile.set_has_tag(False)
-
-
-
+                        break
+        # After all tags processed
+        for current_tile in tile_map:
+            if current_tile.get_tile_id() not in has_tile_array:
+                current_tile.set_has_tag(False)
+                current_tile.set_current_tag(None)
         self.set_filled_tiles(has_tile_array)
 
 

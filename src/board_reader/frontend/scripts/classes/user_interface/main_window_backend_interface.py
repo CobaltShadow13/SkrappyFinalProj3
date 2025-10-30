@@ -107,35 +107,40 @@ class MainWindow(QMainWindow):
             bgtw.setItem(row, col, tile_widget)
         bgtw.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
         bgtw.verticalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-        self.make_cells_square(bgtw)
+        #self.make_cells_square(bgtw)
 
     def refresh_ui_grid(self):
-
+        print("=== REFRESH START ===")
         bgtw = self.ui.board_grid_table_widget
         grid = self.backend.get_board().get_grid()
 
         for tile in grid.get_tile_map():
+
             tile_id = tile.get_tile_id()
             row, col = self.transfer_tile_id_to_table_widget_coords(tile_id)
             row = int(row)
             col = int(col)
             # If the cell exists, update its value; otherwise create it
             item = bgtw.item(row, col)
+            print(f"({row},{col}) item id:", id(item))
             if item is None:
                 tile_widget = TileTableWidgetItem(tile)
                 bgtw.setItem(row, col, tile_widget)
             else:
-                item.setText(f"{int(tile.get_has_tag())}")
+                if tile.get_has_tag():
+                    item.setText(f"{int(tile.get_current_tag().get_local_detection().tag_id)}")
+                else:
+                    item.setText("0")
                 item.tile = tile  # update reference in case it changed
 
             if tile.get_has_tag():
                 print(f"changing color for({row}, {col})")
-                item.setBackground(QtGui.QColor(255, 255, 255))
+                item.setBackground(QtGui.QColor(122, 122, 122))
             else:
                 item.setBackground(QtGui.QColor(0, 0, 0))
 
 
-        self.make_cells_square(bgtw)
+        #self.make_cells_square(bgtw)
 
     def on_board_piece_table_click(self, row, col):
 

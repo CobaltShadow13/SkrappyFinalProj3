@@ -9,6 +9,7 @@ class Tile:
         self.y_tile_coord = y_tile_coord
         self.tile_id = tile_id
         self.has_tag = False
+        self.current_tag = None
         self.boundary_set = boundary_set
         self.icon_display_set = icon_display_set
         self.x_meter_coord = x_meter_coord #in meters
@@ -38,6 +39,8 @@ class Tile:
         return self.icon_display_set
     def get_pixel_boundary_set(self):
         return self.pixel_boundary_set
+    def get_current_tag(self):
+        return self.current_tag
 #Setters
     def set_size(self, size):
         self.size = size
@@ -56,6 +59,8 @@ class Tile:
         self.tile_id = tileID
     def set_boundary_set(self, boundary_set):
         self.boundary_set = boundary_set
+    def set_current_tag(self, tag):
+        self.current_tag = tag
     def set_pixel_boundary_set(self, pixel_boundary_set):
         self.pixel_boundary_set = pixel_boundary_set
     def set_icon_display_set(self, icon_display_set):

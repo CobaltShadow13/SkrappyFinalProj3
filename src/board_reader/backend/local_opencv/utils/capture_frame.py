@@ -35,6 +35,7 @@ def capture_frame(seconds, main_camera, detector):
     ##Fix undistort raw image
 
     frame = main_camera.undistortImage(rawFrame)
+    #frame = rawFrame
 
     # make the image grayscale for library processing
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)

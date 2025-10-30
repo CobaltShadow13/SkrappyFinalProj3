@@ -67,9 +67,6 @@ class LocalCamera(object):
                          [0,      0,     1]])
 
     ### Helper Functions ###
-    def calibrate_camera(self):
-        pass
-
     def undistortImage(self, img):
         h, w = img.shape[:2]
         mtx = self.getCameraMatrix()
@@ -78,7 +75,7 @@ class LocalCamera(object):
 
     def loadCalibration(self):
         # Load JSON calibration
-        camera_calibration_path = r"/data\calibration\camera_intrinsics\fisheye_calibration.json"
+        camera_calibration_path = r"D:\SERAPH_AI\SkrappyFinalProj3\data\calibration\camera_intrinsics\camera_calibration_main.json"
         filename = camera_calibration_path
         with open(filename, 'r') as f:
             data = json.load(f)

@@ -1,0 +1,24 @@
+Our Best Calibration JSON Thusfar is
+
+{
+  "K": [
+    [1011.24, 0.0, 993.68],
+    [0.0, 1011.23, 531.19],
+    [0.0, 0.0, 1.0]
+  ],
+  "D": [ 0.151, -0.222, -0.001, 0, 0.106, -0.007, 0.004, -0.004 ]
+}
+
+
+Funny enough. The X value at least on my computer has been acting up. Changing the Cx value to orient the image as if it was a square. Makes it work better Funny Enough
+Some testing may be required to see if that is always the case. We can set the camera_calibration_main.json to the text below and it returns it better in this case. Also
+Noticing that the X and Y value are flipped. We can either re-orient the camera or multiply the x values by -1 to change them. 10/29/25
+
+{
+  "K": [
+    [1011.24, 0.0, 531.19],
+    [0.0, 1011.23, 531.19],
+    [0.0, 0.0, 1.0]
+  ],
+  "D": [ 0.151, -0.222, -0.001, 0, 0.106, -0.007, 0.004, -0.004 ]
+}
