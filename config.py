@@ -8,7 +8,7 @@ save = False
 save_dir = None
 
 tag_family_strings = "tag16h5"
-camera_calibration_path = r"src\camera_calibration\scripts\data\calibration\camera_intrinsics\fisheye_calibration.json"
+camera_calibration_path = r"data\calibration\camera_intrinsics\fisheye_calibration.json"
 
 
 #Default Icons
@@ -26,7 +26,7 @@ prototype_height = 6.0  #Tiles
 
 default_tile_size_in = inch_to_meters(1) ##Rename this to tile size in meters
 default_tile_size_mm = inch_to_meters(1) * 1000
-default_tag_size_mm = .005 #mm (with padding)
+default_tag_size_mm = 15 #mm (with padding)
 
 #Main camera object, change this to 1,2,3 etc for different cameras plugged into the computer.
 default_camera = LocalCamera(cv.VideoCapture(0))

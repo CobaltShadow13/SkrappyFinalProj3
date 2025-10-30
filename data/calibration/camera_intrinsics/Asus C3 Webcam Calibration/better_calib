@@ -1,0 +1,10 @@
+Fx	1011.24 mm
+Fy	1011.23 mm
+Cx	993.68 px
+Cy	531.19 px
+Distortion	[ 0.151, -0.222, -0.001, 0, 0.106, -0.007, 0.004, -0.004 ]
+Mean Err	0.75px
+Horizontal FOV	87.02°
+Vertical FOV	56.20°
+Diagonal FOV	94.89°
+Board warp, X/Y	0.32 mm / -0.01 mm

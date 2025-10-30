@@ -78,7 +78,7 @@ class LocalCamera(object):
 
     def loadCalibration(self):
         # Load JSON calibration
-        camera_calibration_path = r"D:\SERAPH_AI\SkrappyFinalProj3\src\camera_calibration\scripts\data\calibration\camera_intrinsics\fisheye_calibration.json"
+        camera_calibration_path = r"/data\calibration\camera_intrinsics\fisheye_calibration.json"
         filename = camera_calibration_path
         with open(filename, 'r') as f:
             data = json.load(f)

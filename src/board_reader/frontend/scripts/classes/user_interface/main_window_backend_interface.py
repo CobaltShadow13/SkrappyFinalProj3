@@ -117,7 +117,8 @@ class MainWindow(QMainWindow):
         for tile in grid.get_tile_map():
             tile_id = tile.get_tile_id()
             row, col = self.transfer_tile_id_to_table_widget_coords(tile_id)
-
+            row = int(row)
+            col = int(col)
             # If the cell exists, update its value; otherwise create it
             item = bgtw.item(row, col)
             if item is None:

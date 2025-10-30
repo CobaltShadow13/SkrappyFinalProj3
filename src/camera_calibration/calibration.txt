@@ -1,7 +1,0 @@
-py -3.10 -m venv 310
-.\venv310\Scripts\Activate.ps1
-.\venv310\Scripts\python.exe -m pip install --upgrade pip
-pip install setuptools
-pip install e .
-python -m scripts.run_calibration
-deactivate
