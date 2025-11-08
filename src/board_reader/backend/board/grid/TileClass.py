@@ -14,6 +14,7 @@ class Tile:
         self.icon_display_set = icon_display_set
         self.x_meter_coord = x_meter_coord #in meters
         self.y_meter_coord = y_meter_coord #in meters
+        self.current_board_piece = None
 #Getters
     def get_size(self):
         return self.size
@@ -41,6 +42,8 @@ class Tile:
         return self.pixel_boundary_set
     def get_current_tag(self):
         return self.current_tag
+    def get_current_board_piece(self):
+        return self.current_board_piece
 #Setters
     def set_size(self, size):
         self.size = size
@@ -65,6 +68,8 @@ class Tile:
         self.pixel_boundary_set = pixel_boundary_set
     def set_icon_display_set(self, icon_display_set):
         self.icon_display_set = icon_display_set
+    def set_current_board_piece(self, current_board_piece):
+        self.current_board_piece = current_board_piece
     def set_meter_coordinates(self, x_tile_coord, y_tile_coord): #sets the meter coordinates by multiplying the
         self.x_meter_coord = self.get_size() * x_tile_coord
         self.y_meter_coord = self.get_size() * y_tile_coord

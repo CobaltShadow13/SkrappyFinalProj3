@@ -85,12 +85,14 @@ class Grid(object):
                         tag.set_tile(current_tile)
                         current_tile.set_current_tag(tag)
                         has_tile_array.append(current_tile.get_tile_id())
+                        current_tile.set_current_board_piece(board_piece_array[tag.get_local_detection().tag_id])
                         break
         # After all tags processed
         for current_tile in tile_map:
             if current_tile.get_tile_id() not in has_tile_array:
                 current_tile.set_has_tag(False)
                 current_tile.set_current_tag(None)
+                current_tile.set_current_board_piece(None)
         self.set_filled_tiles(has_tile_array)
 
 

@@ -10,7 +10,7 @@ save_dir = None
 tag_family_strings = "tag16h5"
 camera_calibration_path = r"data/calibration/camera_intrinsics/camera_calibration_main.json"
 
-
+preset = "Chess" ## "Chess", "D&D", "MagicTheGathering", or "Monopoly"
 #Default Icons
 default_door_icon = "default_door.png"
 default_wall_icon = "default_wall.png"
@@ -18,15 +18,15 @@ default_center_icon = "default_center.png"
 default_window_border_icon = "default_window.png"
 defaultIconFileSet = IconFileSet(default_wall_icon, default_center_icon, default_door_icon, default_window_border_icon)
 
-product_width = 6.0  #Tiles
-product_height = 6.0  #Tiles
+product_width = 12.0  #Tiles
+product_height = 12.0  #Tiles
 
 prototype_width = 6.0  #Tiles
 prototype_height = 6.0  #Tiles
 
 default_tile_size_in = inch_to_meters(1) ##Rename this to tile size in meters
 default_tile_size_mm = inch_to_meters(1) * 1000
-default_tag_size_mm = 19 #mm (with padding)
+default_tag_size_mm = 15 #mm (with padding)
 
 #Main camera object, change this to 1,2,3 etc for different cameras plugged into the computer.
 default_camera = LocalCamera(cv.VideoCapture(0))

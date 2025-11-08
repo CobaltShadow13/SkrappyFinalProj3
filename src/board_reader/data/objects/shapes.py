@@ -1,6 +1,6 @@
 from src.board_reader.backend.board.ShapeClass import Shape
 
-player_shape = Shape("Player Character", [1])
+player_shape = Shape("Player Character", ([1,1],[1,1]))
 house_shape_3x3 = Shape("3x3 Tile House", ([1, 1, 1],
                                                             [1, 1, 1],
                                                             [1, 1, 1]))
